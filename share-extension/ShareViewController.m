@@ -752,9 +752,9 @@ NSMutableData * data;
                 title = NSLocalizedString(@"All uploads failed",nil);
             } else {
                 if (postActivity.items.count-postActivity.successfulUploads.count ==1){
-                    title = [NSString stringWithFormat:@"%lu %@",(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"upload failed",nil)];
+                    title = [NSString stringWithFormat:@"%u %@",(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"upload failed",nil)];
                 } else {
-                    title = [NSString stringWithFormat:@"%lu %@",(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"uploads failed",nil)];
+                    title = [NSString stringWithFormat:@"%u %@",(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"uploads failed",nil)];
                 }
             }
             

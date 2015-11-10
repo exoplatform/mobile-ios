@@ -32,7 +32,7 @@
 
 inline static NSString* keyForURL(NSURL* url, NSString* style) {
 	if(style) {
-		return [NSString stringWithFormat:@"EGOImageLoader-%lu-%lu", (unsigned long)[[url description] hash], [style hash]];
+		return [NSString stringWithFormat:@"EGOImageLoader-%lu-%lu", (unsigned long)[[url description] hash], (unsigned long)[style hash]];
 	} else {
 		return [NSString stringWithFormat:@"EGOImageLoader-%lu", (unsigned long)[[url description] hash]];
 	}
