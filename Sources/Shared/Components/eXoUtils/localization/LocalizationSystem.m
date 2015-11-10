@@ -21,7 +21,7 @@ static NSBundle *bundle = nil;
 	@synchronized([LocalizationSystem class])
 	{
 		if (!_sharedLocalSystem){
-			[[self alloc] init];
+			_sharedLocalSystem = [[LocalizationSystem alloc] init];
 		}
 		return _sharedLocalSystem;
 	}

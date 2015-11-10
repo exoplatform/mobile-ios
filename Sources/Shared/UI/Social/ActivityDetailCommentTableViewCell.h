@@ -36,7 +36,7 @@
     
 }
 
-@property (retain, nonatomic) IBOutlet EGOImageView *imageView;
+@property (retain, nonatomic) IBOutlet EGOImageView *attImageView;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
 @property (retain, nonatomic) IBOutlet EGOImageView* imgvAvatar;
