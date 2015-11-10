@@ -27,7 +27,7 @@
 #import "ActivityHelper.h"
 #define kImageViewHeight 100
 @interface ActivityDetailCommentTableViewCell ()
-@property (retain, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeightContraint;
+@property (retain, nonatomic) IBOutlet NSLayoutConstraint *attImageViewHeightContraint;
 @end
 
 @implementation ActivityDetailCommentTableViewCell
@@ -114,12 +114,12 @@
     if (socialComment.imageURLs!=nil && socialComment.imageURLs.count>0){
         NSURL * url = [NSURL URLWithString:socialComment.imageURLs[0]];
         if (url){
-            self.imageView.imageURL = url;
-            self.imageViewHeightContraint.constant = kImageViewHeight;
+            self.attImageView.imageURL = url;
+            self.attImageViewHeightContraint.constant = kImageViewHeight;
         } else {
             // Remove part of the string that is not actual data
             NSString * base64StringOfImage = [socialComment.imageURLs[0] stringByReplacingOccurrencesOfString:@"data:<;base64," withString:@""];
-            int b64ImageStringLength = [base64StringOfImage length];
+            int b64ImageStringLength = (int)[base64StringOfImage length];
             if (b64ImageStringLength % 4 != 0) {
                 // Append missing '=' so the string's length is a factor of 4
                 // http://stackoverflow.com/a/21407393
@@ -134,15 +134,15 @@
                 image = [UIImage imageWithData:imageData];
             }
             if (image){
-                self.imageView.image = image;
-                self.imageViewHeightContraint.constant = kImageViewHeight;
+                self.attImageView.image = image;
+                self.attImageViewHeightContraint.constant = kImageViewHeight;
             } else {
-                self.imageViewHeightContraint.constant = 0;
+                self.attImageViewHeightContraint.constant = 0;
             }
         }
     } else {
-        self.imageView.image = nil;
-        self.imageViewHeightContraint.constant = 0;
+        self.attImageView.image = nil;
+        self.attImageViewHeightContraint.constant = 0;
     }
 
     

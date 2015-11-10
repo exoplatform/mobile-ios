@@ -99,7 +99,7 @@
 		view = superview;
 	}
 	
-    return superview;
+    return @[superview];
 }
 
 

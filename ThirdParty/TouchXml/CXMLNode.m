@@ -224,7 +224,7 @@ switch([self kind])
 		// TODO: NSXML does not have XML_CDATA_SECTION_NODE correspondent.
 		break;
 	default:
-		NSAssert1(NO, @"TODO not implemented type (%d).",  [self kind]);
+		NSAssert1(NO, @"TODO not implemented type (%d).",  (int)[self kind]);
 	}
 return str;
 }
