@@ -7,20 +7,20 @@
 */
 
 
-"All uploads failed" = "All uploads failed";
+"All uploads failed" = "Помилка при завантаженні всих файлів";
 
-"uploads failed" = "uploads failed";
+"uploads failed" = "завантаження не вдалося";
 
-"upload failed" = "upload failed";
+"upload failed" = "Не вдалося завантажити";
 
 "Cancel" = "Скасувати";
 
 "Post" = "Повідомлення";
 
-"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
+"%d item(s) cannot be uploaded" = "%d файла(ів) не можуть бути завантажені";
 
-"File too large" = "File too large";
+"File too large" = "Файл завеликий";
 
-"Network error" = "Network error";
+"Network error" = "Помилка мережі";
 
-"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
+"Do you want to post the message anyway?" = "Ви хочете опублікувати повідомлення в будь-якому випадку?";
