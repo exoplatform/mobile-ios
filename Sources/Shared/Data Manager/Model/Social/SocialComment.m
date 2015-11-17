@@ -26,7 +26,7 @@
 @implementation SocialComment
 
 @synthesize text = _text;
-@synthesize identityId = _identityId; 
+@synthesize identityId = _identityId;
 @synthesize createdAt = _createdAt;
 @synthesize postedTime = _postedTime;
 @synthesize userProfile = _userProfile;
@@ -44,15 +44,15 @@
 }
 
 
-- (NSString*)fixupTextForStyledTextLabel:(NSString*)text { 
-    text = [text stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"]; 
-    return text; 
-} 
+- (NSString*)fixupTextForStyledTextLabel:(NSString*)text {
+    text = [text stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+    return text;
+}
 
--(void)convertHTMLEncoding 
+-(void)convertHTMLEncoding
 {
     self.text = [self.text gtm_stringByUnescapingFromHTML];
-} 
+}
 
 -(void) parseTextHTML {
     NSRange range;
@@ -67,10 +67,11 @@
             if (!self.linkURLs){
                 self.linkURLs = [[NSMutableArray alloc] init];
             }
-            ahefTag = [self absolutePathFromStringURL:ahefTag];
-            NSURL * urlTest = [NSURL URLWithString:ahefTag];
+            NSString * absoluteHref = [self absolutePathFromStringURL:ahefTag];
+            self.text = [self.text stringByReplacingOccurrencesOfString:ahefTag withString:absoluteHref];
+            NSURL * urlTest = [NSURL URLWithString:absoluteHref];
             if (urlTest){
-                [self.linkURLs addObject:ahefTag];
+                [self.linkURLs addObject:absoluteHref];
             }
         }
         range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
@@ -84,22 +85,22 @@
             if (!self.imageURLs){
                 self.imageURLs = [[NSMutableArray alloc] init];
             }
-            imgTag = [self absolutePathFromStringURL:imgTag];
-            NSURL * urlTest = [NSURL URLWithString:imgTag];
+            NSString * absoluteImgSrc = [self absolutePathFromStringURL:imgTag];
+            self.text = [self.text stringByReplacingOccurrencesOfString:imgTag withString:absoluteImgSrc];
+            NSURL * urlTest = [NSURL URLWithString:absoluteImgSrc];
             if (urlTest){
-                [self.imageURLs addObject:imgTag];
+                [self.imageURLs addObject:absoluteImgSrc];
             }
-
         }
         range = [htmlString rangeOfString:@"<img[^>]+src=\"" options:NSRegularExpressionSearch];
     }
- 
+    
     self.message = [self.text stringByConvertingHTMLToPlainText];
     self.cellHeight = 0;
 }
 
 -(NSString *) toHTML {
-
+    
     NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:30pt;word-wrap: break-word;} img { width:100%%; height:auto;} div{margin-top : 60px; width:100%%; height:auto; align:center;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><div>%@</div></body></html>",self.text ? self.text : @""];
     return htmlStr;
 }
