@@ -33,6 +33,11 @@
 	<string>2.9.20151110</string>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
