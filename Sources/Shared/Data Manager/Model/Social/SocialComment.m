@@ -21,6 +21,7 @@
 #import "NSDate+Formatting.h"
 #import "GTMNSString+HTML.h"
 #import "NSString+HTML.h"
+#import "ApplicationPreferencesManager.h"
 
 @implementation SocialComment
 
@@ -57,18 +58,22 @@
     NSRange range;
     NSString * htmlString = self.text;
     
-    range = [htmlString rangeOfString:@"<a[^>]+href=\"http" options:NSRegularExpressionSearch];
+    range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
     while (range.location!= NSNotFound){
-        htmlString = [htmlString substringFromIndex:(range.location+range.length-4)];
+        htmlString = [htmlString substringFromIndex:(range.location+range.length)];
         NSString * ahefTag = [htmlString substringToIndex:[htmlString rangeOfString:@"\""].location];
         
         if (ahefTag && ahefTag.length>0){
             if (!self.linkURLs){
                 self.linkURLs = [[NSMutableArray alloc] init];
             }
-            [self.linkURLs addObject:ahefTag];
+            ahefTag = [self absolutePathFromStringURL:ahefTag];
+            NSURL * urlTest = [NSURL URLWithString:ahefTag];
+            if (urlTest){
+                [self.linkURLs addObject:ahefTag];
+            }
         }
-        range = [htmlString rangeOfString:@"<a[^>]+href=\"http" options:NSRegularExpressionSearch];
+        range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
     }
     htmlString = self.text;
     range = [htmlString rangeOfString:@"<img[^>]+src=\"" options:NSRegularExpressionSearch];
@@ -79,7 +84,12 @@
             if (!self.imageURLs){
                 self.imageURLs = [[NSMutableArray alloc] init];
             }
-            [self.imageURLs addObject:imgTag];
+            imgTag = [self absolutePathFromStringURL:imgTag];
+            NSURL * urlTest = [NSURL URLWithString:imgTag];
+            if (urlTest){
+                [self.imageURLs addObject:imgTag];
+            }
+
         }
         range = [htmlString rangeOfString:@"<img[^>]+src=\"" options:NSRegularExpressionSearch];
     }
@@ -93,4 +103,13 @@
     NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:30pt;word-wrap: break-word;} img { width:100%%; height:auto;} div{margin-top : 60px; width:100%%; height:auto; align:center;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body><div>%@</div></body></html>",self.text ? self.text : @""];
     return htmlStr;
 }
+
+-(NSString *) absolutePathFromStringURL:(NSString *) stringURL {
+    NSURL * urlTest = [NSURL URLWithString:stringURL];
+    if (!urlTest || !urlTest.host || urlTest.host.length ==0) {
+        stringURL = [ApplicationPreferencesManager.sharedInstance.selectedDomain stringByAppendingString:stringURL];
+    }
+    return stringURL;
+}
+
 @end
