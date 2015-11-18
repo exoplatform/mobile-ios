@@ -22,6 +22,8 @@
 #import "GTMNSString+HTML.h"
 #import "NSString+HTML.h"
 #import "ApplicationPreferencesManager.h"
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 
 @implementation SocialComment
 
@@ -95,8 +97,21 @@
         range = [htmlString rangeOfString:@"<img[^>]+src=\"" options:NSRegularExpressionSearch];
     }
     
-    self.message = [self.text stringByConvertingHTMLToPlainText];
+    self.message = [self plainTextFormHTML:self.text];
     self.cellHeight = 0;
+}
+
+-(NSString *) plainTextFormHTML:(NSString *) htmlString {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3")){
+        
+        NSString * string = htmlString;
+        NSData *HTMLData = [string dataUsingEncoding:NSUTF8StringEncoding];
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithData:HTMLData options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:NULL error:NULL];
+        NSString *plainString = attrString.string;
+        return plainString;
+    }
+    NSString * string = [htmlString stringByConvertingHTMLToPlainText];
+    return string;
 }
 
 -(NSString *) toHTML {
@@ -106,11 +121,16 @@
 }
 
 -(NSString *) absolutePathFromStringURL:(NSString *) stringURL {
-    NSURL * urlTest = [NSURL URLWithString:stringURL];
-    if (!urlTest || !urlTest.host || urlTest.host.length ==0) {
-        stringURL = [ApplicationPreferencesManager.sharedInstance.selectedDomain stringByAppendingString:stringURL];
+    NSString * s = stringURL;
+    NSRange rangeProtocol = [stringURL rangeOfString:@"http"];
+    if (rangeProtocol.location == NSNotFound || rangeProtocol.location != 0) {
+        s = [@"http://" stringByAppendingString:stringURL];
     }
-    return stringURL;
+    NSURL * urlTest = [NSURL URLWithString:s];
+    if (!urlTest || !urlTest.host || urlTest.host.length ==0) {
+        return [ApplicationPreferencesManager.sharedInstance.selectedDomain stringByAppendingString:stringURL];
+    }
+    return s;
 }
 
 @end

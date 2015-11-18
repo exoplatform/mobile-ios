@@ -195,6 +195,11 @@
     
     [manager getObjectsAtPath:[self createCommentsResourcePath:activityId] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         self.socialActivityDetails = [[mappingResult array] objectAtIndex:0];
+        for (SocialActivity * activity in [mappingResult array]) {
+            for (SocialComment * comment in activity.comments){
+                [comment parseTextHTML];
+            }
+        }
         [super restKitDidLoadObjects:[mappingResult array]];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         [super restKitDidFailWithError:error];
