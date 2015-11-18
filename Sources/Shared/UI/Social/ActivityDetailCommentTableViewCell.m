@@ -96,7 +96,7 @@
     
     _imgvAvatar.imageURL = [NSURL URLWithString:tmp];  
     _lbName.text = [socialComment.userProfile.fullName copy];
-    NSString * message = socialComment.message;
+    NSString * message = socialComment.message.string;
     if (socialComment.linkURLs!=nil && socialComment.linkURLs.count>0) {
         NSRange linkURLRange = [message rangeOfString:socialComment.linkURLs[0]];
         if (linkURLRange.location==NSNotFound){
@@ -105,9 +105,9 @@
         }
         NSMutableAttributedString * attributedMessage = [[NSMutableAttributedString alloc] initWithString:message];
         [attributedMessage addAttributes:kAttributeURL range:linkURLRange];
-        self.lbMessage.attributedText = attributedMessage;
+        self.lbMessage.attributedText = socialComment.message;
     } else {
-        self.lbMessage.text = message;
+        self.lbMessage.attributedText = socialComment.message;
     }
     
     _lbDate.text = socialComment.postedTimeInWords;

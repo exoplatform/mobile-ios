@@ -806,7 +806,7 @@ NSMutableData * data;
         NSString * message =@"";
         if ([postItem.type isEqualToString:@"DOC_ACTIVITY"]) {
             if (postItem.fileUploadedName!=nil && postItem.fileUploadedURL!=nil){
-                message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", postItem.fileUploadedURL, postItem.fileUploadedName];
+                message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", [NSURL URLWithString:postItem.fileUploadedURL].relativePath, postItem.fileUploadedName];
                 NSURL * thumbnailURL = [NSURL URLWithString:[postItem.fileUploadedURL stringByReplacingOccurrencesOfString:@"/jcr/" withString:@"/thumbnailImage/large/"]];
                 if (postItem.isImageItem){
                     message = [message stringByAppendingString:[NSString stringWithFormat:@"\n<img src=\"%@\" >",thumbnailURL.relativePath]];

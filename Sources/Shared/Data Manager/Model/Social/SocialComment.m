@@ -57,27 +57,39 @@
 }
 
 -(void) parseTextHTML {
-    NSRange range;
     NSString * htmlString = self.text;
+/*    NSError *error = nil;
+    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
     
-    range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
-    while (range.location!= NSNotFound){
-        htmlString = [htmlString substringFromIndex:(range.location+range.length)];
-        NSString * ahefTag = [htmlString substringToIndex:[htmlString rangeOfString:@"\""].location];
-        
-        if (ahefTag && ahefTag.length>0){
-            if (!self.linkURLs){
-                self.linkURLs = [[NSMutableArray alloc] init];
-            }
-            NSString * absoluteHref = [self absolutePathFromStringURL:ahefTag];
-            self.text = [self.text stringByReplacingOccurrencesOfString:ahefTag withString:absoluteHref];
-            NSURL * urlTest = [NSURL URLWithString:absoluteHref];
-            if (urlTest){
-                [self.linkURLs addObject:absoluteHref];
-            }
-        }
-        range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
-    }
+    [detector enumerateMatchesInString:htmlString options:0 range:NSMakeRange(0, [htmlString length]) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (!self.linkURLs){
+            self.linkURLs = [[NSMutableArray alloc] init];
+        }        
+        [self.linkURLs addObject:result.URL.absoluteString];
+
+    }];
+*/
+   NSRange range;
+////    NSString * htmlString = self.text;
+//    
+//    range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
+//    while (range.location!= NSNotFound){
+//        htmlString = [htmlString substringFromIndex:(range.location+range.length)];
+//        NSString * ahefTag = [htmlString substringToIndex:[htmlString rangeOfString:@"\""].location];
+//        
+//        if (ahefTag && ahefTag.length>0){
+//            if (!self.linkURLs){
+//                self.linkURLs = [[NSMutableArray alloc] init];
+//            }
+//            NSString * absoluteHref = [self absolutePathFromStringURL:ahefTag];
+//            self.text = [self.text stringByReplacingOccurrencesOfString:ahefTag withString:absoluteHref];
+//            NSURL * urlTest = [NSURL URLWithString:absoluteHref];
+//            if (urlTest){
+//                [self.linkURLs addObject:absoluteHref];
+//            }
+//        }
+//        range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
+//    }
     htmlString = self.text;
     range = [htmlString rangeOfString:@"<img[^>]+src=\"" options:NSRegularExpressionSearch];
     if (range.location!= NSNotFound){
@@ -97,21 +109,59 @@
         range = [htmlString rangeOfString:@"<img[^>]+src=\"" options:NSRegularExpressionSearch];
     }
     
+    
     self.message = [self plainTextFormHTML:self.text];
     self.cellHeight = 0;
 }
 
--(NSString *) plainTextFormHTML:(NSString *) htmlString {
+-(NSAttributedString *) plainTextFormHTML:(NSString *) htmlString {
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3")){
         
         NSString * string = htmlString;
         NSData *HTMLData = [string dataUsingEncoding:NSUTF8StringEncoding];
-        NSAttributedString *attrString = [[NSAttributedString alloc] initWithData:HTMLData options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:NULL error:NULL];
-        NSString *plainString = attrString.string;
-        return plainString;
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithData:HTMLData options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:NULL error:NULL];
+
+        [attrString beginEditing];
+        [attrString enumerateAttribute:NSFontAttributeName inRange:NSMakeRange(0, attrString.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+            if (value) {
+                UIFont *oldFont = (UIFont *)value;
+                /*----- Remove old font attribute -----*/
+                [attrString removeAttribute:NSFontAttributeName range:range];
+                //replace your font with new.
+                /*----- Add new font attribute -----*/
+                if ([oldFont.fontName isEqualToString:@"TimesNewRomanPSMT"])
+                    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:range];
+                else if([oldFont.fontName isEqualToString:@"TimesNewRomanPS-BoldMT"])
+                    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15 weight:1.5] range:range];
+                else if([oldFont.fontName isEqualToString:@"TimesNewRomanPS-ItalicMT"])
+                    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14 weight:0.5] range:range];
+                else if([oldFont.fontName isEqualToString:@"TimesNewRomanPS-BoldItalicMT"])
+                    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:range];
+                else
+                    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:range];
+            }
+        }];
+        [attrString enumerateAttribute:NSLinkAttributeName inRange:NSMakeRange(0, attrString.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+            if (value) {
+                if (!self.linkURLs){
+                    self.linkURLs = [[NSMutableArray alloc] init];
+                }
+                NSURL * url = (NSURL*) value;
+                if ([url.absoluteString rangeOfString:@"applewebdata"].location == 0){
+                    url = [NSURL URLWithString:[ApplicationPreferencesManager.sharedInstance.selectedDomain stringByAppendingString:url.relativePath]];
+                }
+                [self.linkURLs addObject:[self absolutePathFromStringURL:url.absoluteString]];
+                [attrString addAttribute:NSLinkAttributeName value:url range:range];
+            }
+
+        }];
+        [attrString endEditing];
+        
+        return attrString;
     }
     NSString * string = [htmlString stringByConvertingHTMLToPlainText];
-    return string;
+    return [[NSAttributedString alloc] initWithString:string];
+    
 }
 
 -(NSString *) toHTML {

@@ -43,7 +43,7 @@
     
 }
 
-@property (nonatomic, retain) NSString * message;
+@property (nonatomic, retain) NSAttributedString * message;
 @property (nonatomic, retain) NSMutableArray * linkURLs;
 @property (nonatomic, retain) NSMutableArray * imageURLs;
 
