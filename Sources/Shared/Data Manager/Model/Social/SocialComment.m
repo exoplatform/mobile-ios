@@ -21,6 +21,7 @@
 #import "NSDate+Formatting.h"
 #import "GTMNSString+HTML.h"
 #import "NSString+HTML.h"
+#import "ApplicationPreferencesManager.h"
 
 @implementation SocialComment
 
@@ -55,37 +56,73 @@
 
 -(void) parseTextHTML {
     NSRange range;
-    NSString * htmlString = self.text;
+    self.message = [self.text stringByConvertingHTMLToPlainText];
     
-    range = [htmlString rangeOfString:@"<a[^>]+href=\"http" options:NSRegularExpressionSearch];
+    // Detect links
+    NSString * htmlString = self.text;
+    range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
     while (range.location!= NSNotFound){
-        htmlString = [htmlString substringFromIndex:(range.location+range.length-4)];
+        htmlString = [htmlString substringFromIndex:(range.location+range.length)];
         NSString * ahefTag = [htmlString substringToIndex:[htmlString rangeOfString:@"\""].location];
         
         if (ahefTag && ahefTag.length>0){
             if (!self.linkURLs){
                 self.linkURLs = [[NSMutableArray alloc] init];
             }
-            [self.linkURLs addObject:ahefTag];
+            [self.linkURLs addObject:[self absoluteURLFromStringURL:ahefTag]];
         }
-        range = [htmlString rangeOfString:@"<a[^>]+href=\"http" options:NSRegularExpressionSearch];
+        range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
     }
+
+    // Detect images
     htmlString = self.text;
     range = [htmlString rangeOfString:@"<img[^>]+src=\"" options:NSRegularExpressionSearch];
-    if (range.location!= NSNotFound){
+    while (range.location!= NSNotFound){
         htmlString = [htmlString substringFromIndex:(range.location+range.length)];
         NSString * imgTag = [htmlString substringToIndex:[htmlString rangeOfString:@"\""].location];
         if (imgTag && imgTag.length>0){
             if (!self.imageURLs){
                 self.imageURLs = [[NSMutableArray alloc] init];
             }
-            [self.imageURLs addObject:imgTag];
+            [self.imageURLs addObject:[self absoluteURLFromStringURL:imgTag]];
         }
         range = [htmlString rangeOfString:@"<img[^>]+src=\"" options:NSRegularExpressionSearch];
     }
- 
-    self.message = [self.text stringByConvertingHTMLToPlainText];
+    
     self.cellHeight = 0;
+}
+
+/*!
+ * Finds and returns an absolute URL from the given string, provided that
+ * it contains an absolute URL, or an URL without protocol, or a relative URL.
+ *
+ * If multiple URLs are present in the given string, only the 1st one is returned.
+ */
+- (NSString*) absoluteURLFromStringURL:(NSString*) stringURL {
+    NSURL * urlTest = nil;
+    NSError * error = NULL;
+    // Try to detect links in the string
+    // This will match URLs whether or not they start with a protocol
+    NSDataDetector * detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+    NSArray *matches = [detector matchesInString:stringURL
+                                         options:0
+                                           range:NSMakeRange(0, [stringURL length])];
+    if (matches != nil && matches.count > 0) {
+        NSTextCheckingResult * match = matches[0];
+        // if the detected URL didn't have a protocol, http:// was added
+        return match.URL.absoluteString;
+    }
+    // If no URLs was detected, it's probably a relative URL
+    if (urlTest == nil)
+        urlTest = [NSURL URLWithString:stringURL];
+    
+    if (urlTest != nil && urlTest.path != nil) {
+        return [ApplicationPreferencesManager.sharedInstance.selectedDomain
+                stringByAppendingString:urlTest.path];
+    } else {
+        // no URL was detected
+        return nil;
+    }
 }
 
 -(NSString *) toHTML {
