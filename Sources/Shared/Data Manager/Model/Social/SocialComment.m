@@ -130,7 +130,7 @@
                 stringByAppendingString:urlTest.path];
     } else {
         // no URL was detected
-        return nil;
+        return stringURL;
     }
 }
 
