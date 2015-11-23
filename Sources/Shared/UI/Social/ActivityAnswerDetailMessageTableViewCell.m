@@ -28,12 +28,9 @@
 
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth{
-    CGRect tmpFrame = CGRectZero;
     if (fWidth > 320) {
-        tmpFrame = CGRectMake(67, 0, WIDTH_FOR_CONTENT_IPAD, 21);
         width = WIDTH_FOR_CONTENT_IPAD;
     } else {
-        tmpFrame = CGRectMake(67, 0, WIDTH_FOR_CONTENT_IPHONE , 21);
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
     

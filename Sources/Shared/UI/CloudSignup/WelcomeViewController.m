@@ -253,7 +253,7 @@
 
 - (NSArray *)screenshots
 {
-    NSArray *res = [[NSArray alloc] init];
+    NSArray *res;
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
             res = @[@"ipad-activity-stream-landscape",@"ipad-activity-details-landscape", @"ipad-apps-landscape", @"ipad-documents-landscape"];

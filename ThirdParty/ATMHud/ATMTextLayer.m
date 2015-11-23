@@ -50,6 +50,7 @@
                                            NSForegroundColorAttributeName: [UIColor whiteColor]
                                            }];
 	UIGraphicsPopContext();
+    [wordWrapStyle release];
 }
 
 - (void)dealloc {

@@ -80,6 +80,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     // Unselect the selected row if any
     NSIndexPath*	selection = [_tblFiles indexPathForSelectedRow];
     if (selection)

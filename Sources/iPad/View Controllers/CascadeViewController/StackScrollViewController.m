@@ -679,7 +679,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
     NSInteger index = [viewControllersStack indexOfObject:viewController];
     
     if (index != NSNotFound) {
-        // get the parent view if it's avaiable
+        // get the parent view if it's available
         UIViewController *parentViewController = index > 0 ? viewControllersStack[(index - 1)] : nil;
         // retain the parent view to be ensured that it isn't deallocated before kept by the stack.
         UIViewController *invokingViewController = index > 1 ? viewControllersStack[(index - 2)] : nil;
@@ -689,9 +689,7 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 }
 
 - (void)addViewInSlider:(UIViewController*)controller invokeByController:(UIViewController*)invokeByController isStackStartView:(BOOL)isStackStartView{
-	
-	BOOL isContentSizeForMainViewSet = FALSE;
-	
+
 	if (isStackStartView) {
 		slideStartPosition = SLIDE_VIEWS_START_X_POS;
 		viewXPosition = slideStartPosition;
@@ -704,7 +702,6 @@ const NSInteger SLIDE_VIEWS_START_X_POS = 0;
 		[[borderViews viewWithTag:2] setHidden:TRUE];
 		[[borderViews viewWithTag:1] setHidden:TRUE];
 		[viewControllersStack removeAllObjects];
-		isContentSizeForMainViewSet = TRUE;
 	}
 	
 	

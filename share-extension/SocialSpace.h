@@ -29,5 +29,4 @@
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSString * spaceId;
 
--(void) requestForSpaceId;
 @end

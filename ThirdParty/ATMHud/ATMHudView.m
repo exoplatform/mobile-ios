@@ -249,7 +249,7 @@
 				}
 			}
 		}
-		
+        [wordWrapStyle release];
 		switch (p.accessoryPosition) {
 			case ATMHudAccessoryPositionTop: {
 				activityRect = CGRectMake((targetBounds.size.width-activitySize.width)*0.5, marginY, activitySize.width, activitySize.height);
@@ -407,6 +407,7 @@
 			}
 		}
 	}
+    [wordWrapStyle release];
 	return targetSize;
 }
 

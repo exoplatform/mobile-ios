@@ -10,7 +10,7 @@
 
 @implementation JTTableViewCellFactory
 
-+ (UITableViewCell *)loaderCellWithIdentifier:(NSString *)reuseIdentifier {
++ (UITableViewCell *)newLoaderCellWithIdentifier:(NSString *)reuseIdentifier {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                    reuseIdentifier:reuseIdentifier];
     UIActivityIndicatorView *activityIndicator = [[[UIActivityIndicatorView alloc] 

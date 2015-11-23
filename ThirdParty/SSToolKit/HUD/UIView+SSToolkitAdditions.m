@@ -98,8 +98,12 @@
 		[superviews addObject:superview];
 		view = superview;
 	}
-	
-    return @[superview];
+    if (superview) {
+        return @[superview];
+    } else {
+        return @[];
+    }
+
 }
 
 
