@@ -69,7 +69,12 @@
             if (!self.linkURLs){
                 self.linkURLs = [[NSMutableArray alloc] init];
             }
-            [self.linkURLs addObject:[self absoluteURLFromStringURL:ahefTag]];
+            NSString * absoluteURL = [self absoluteURLFromStringURL:ahefTag];
+            if (absoluteURL) {
+                self.text = [self.text stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"href=\"%@",ahefTag] withString:[NSString stringWithFormat:@"src=\"%@",absoluteURL]];
+                [self.linkURLs addObject:[self absoluteURLFromStringURL:absoluteURL]];
+            }
+
         }
         range = [htmlString rangeOfString:@"<a[^>]+href=\"" options:NSRegularExpressionSearch];
     }
@@ -84,7 +89,11 @@
             if (!self.imageURLs){
                 self.imageURLs = [[NSMutableArray alloc] init];
             }
-            [self.imageURLs addObject:[self absoluteURLFromStringURL:imgTag]];
+            NSString * absoluteURL = [self absoluteURLFromStringURL:imgTag];
+            if (absoluteURL) {
+                self.text = [self.text stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"src=\"%@",imgTag] withString:[NSString stringWithFormat:@"src=\"%@",absoluteURL]];
+                [self.imageURLs addObject:absoluteURL];
+            }
         }
         range = [htmlString rangeOfString:@"<img[^>]+src=\"" options:NSRegularExpressionSearch];
     }
