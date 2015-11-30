@@ -29,7 +29,7 @@
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 #define kHeightForSectionHeader 40
 
-@interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate, FilesProxyDelegate> {
+@interface DocumentsViewController : eXoViewController <FileActionsProtocol, FileFolderActionsProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, ATMHudDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIPopoverControllerDelegate, FilesProxyDelegate, WEPopoverControllerDelegate> {
     
     File *_rootFile;
     
@@ -48,7 +48,7 @@
     
     UITableViewCell *_currentCell;
     
-    UIPopoverController *_popoverPhotoLibraryController;
+    WEPopoverController *_popoverPhotoLibraryController;
     
     BOOL isRoot;
     BOOL stop;
@@ -56,7 +56,7 @@
 
 // Follow the Apple convention, the child view should keep a weak reference to parent only.
 @property(nonatomic, assign) DocumentsViewController *parentController;
-@property(nonatomic, retain) UIPopoverController *popoverPhotoLibraryController;
+@property(nonatomic, retain) WEPopoverController *popoverPhotoLibraryController;
 @property (nonatomic, assign) BOOL actionVisibleOnFolder;
 @property (nonatomic, retain) File * fileToApplyAction;
 @property BOOL isRoot;

@@ -140,3 +140,4 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define NUMBER_OF_ACTIVITIES 25
 #define NUMBER_OF_MORE_ACTIVITIES 25
 
+#define kIpadPopoverContentSize CGSizeMake(300,400)

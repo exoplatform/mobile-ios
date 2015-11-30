@@ -285,7 +285,6 @@
     
     CGRect frame = CGRectMake(290,-5, 0, 0);
     [self.popoverClass presentPopoverFromRect:frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationBar.topItem.rightBarButtonItem.enabled = NO;
 }
 
 -(void)askToMakeFolderActions:(BOOL)createNewFolder {

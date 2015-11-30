@@ -700,18 +700,15 @@ static NSString *PUBLIC_DRIVE = @"Public";
             thePicker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             thePicker.modalPresentationStyle = UIModalPresentationFormSheet;
             
-            self.popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:thePicker];
+            self.popoverPhotoLibraryController = [[WEPopoverController alloc] initWithContentViewController:thePicker];
+            thePicker.preferredContentSize = kIpadPopoverContentSize;
             self.popoverPhotoLibraryController.delegate = self;
-            [self.popoverPhotoLibraryController setPopoverContentSize:CGSizeMake(320, 320) animated:YES];
-            
 
             if(displayActionDialogAtRect.size.width == 0) {
-                
                 //present the popover from the rightBarButtonItem of the navigationBar
                 [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem 
                                                  permittedArrowDirections:UIPopoverArrowDirectionUp 
                                                                  animated:YES];
-             
 
             }
             else {
@@ -961,7 +958,7 @@ static NSString *PUBLIC_DRIVE = @"Public";
 }
 
 #pragma mark - ActionSheet Delegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex < 2 && buttonIndex >=0)
     {

@@ -49,6 +49,7 @@
     [((RoundRectView *) [self.view subviews][0]) addSubview:_tblFiles];
 }
 
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
@@ -102,31 +103,38 @@
 }
 
 - (void)showImagePickerForAddPhotoAction:(UIImagePickerController *)picker {
+
     picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     picker.modalPresentationStyle = UIModalPresentationFormSheet;
-    self.popoverPhotoLibraryController = [[UIPopoverController alloc] initWithContentViewController:picker];
-    self.popoverPhotoLibraryController.delegate = self;
-    
-    if(displayActionDialogAtRect.size.width == 0) {
-        //present the popover from the rightBarButtonItem of the navigationBar
-//        [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-        
-        CGRect rect = [_navigation.topItem.rightBarButtonItem frameInView:self.view];
-        rect.origin.x += 10;
-        rect.origin.y += 20;
-        rect.size.width = 0;
-        rect.size.height = 0;
-        // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.popoverPhotoLibraryController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-        }];
+    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera ) {
+        ExoStackScrollViewController *stackScrollVC = [AppDelegate_iPad instance].rootViewController.stackScrollViewController;
+        [stackScrollVC presentViewController:picker animated:YES completion:nil];
     } else {
-        // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
-        }];
+        self.popoverPhotoLibraryController = [[WEPopoverController alloc] initWithContentViewController:picker];
+        self.popoverPhotoLibraryController.delegate = self;
+        [self.popoverPhotoLibraryController setContainerViewProperties:self.popoverProperties];
+        [self presentPhotoLibraryImagePicker];
     }
+}
+
+-(void) presentPhotoLibraryImagePicker {
+    if (self.popoverPhotoLibraryController != nil) {
+        self.popoverPhotoLibraryController.contentViewController.preferredContentSize = kIpadPopoverContentSize;
+        if(displayActionDialogAtRect.size.width == 0) {
+            // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.popoverPhotoLibraryController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp                                                                                                  animated:YES];
+                
+            }];
+        } else {
+            // workaround will be fixed by https://jira.exoplatform.org/browse/MOB-1828
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.popoverPhotoLibraryController presentPopoverFromRect:displayActionDialogAtRect inView:_currentCell permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+            }];
+        }
+    }
+    
 }
 
 -(void)dealloc {
@@ -279,9 +287,9 @@
     [fileFolderActionsController setPreferredContentSize:CGSizeMake(320, 140)];
     fileFolderActionsController.delegate = self;
     
-    _fileFolderActionsPopoverController =  [[UIPopoverController alloc] initWithContentViewController:fileFolderActionsController];
+    _fileFolderActionsPopoverController =  [[WEPopoverController alloc] initWithContentViewController:fileFolderActionsController];
     _fileFolderActionsPopoverController.delegate = self;
-    
+    [_fileFolderActionsPopoverController setContainerViewProperties:self.popoverProperties];
     if(displayActionDialogAtRect.size.width == 0)
         [_fileFolderActionsPopoverController presentPopoverFromBarButtonItem:_navigation.topItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     else
@@ -303,7 +311,9 @@
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
     //Enable the button on the navigationBar
     _navigation.topItem.rightBarButtonItem.enabled = YES;
-    
+    if ((WEPopoverController*) popoverController == self.popoverPhotoLibraryController) {
+        self.popoverPhotoLibraryController = nil;
+    }
 }
 
 - (BOOL)popoverControllerShouldDismissPopover:(WEPopoverController *)thePopoverController {
@@ -392,7 +402,7 @@
 -(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     [self.view setFrame:CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, SCREEN_HEIGHT)];
+    [self presentPhotoLibraryImagePicker];
 }
-
 
 @end

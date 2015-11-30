@@ -32,11 +32,6 @@
     return YES;
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [_popoverPhotoLibraryController dismissPopoverAnimated:YES];
-}
-
 - (void)updateHudPosition {
     self.hudLoadWaiting.center = CGPointMake(self.view.center.x, self.view.center.y-70);
 }
