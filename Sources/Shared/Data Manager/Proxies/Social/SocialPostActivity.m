@@ -113,6 +113,7 @@
         [activity setKeyForTemplateParams:@"WORKSPACE" value:serverPM.defaultWorkspace];
         [activity setKeyForTemplateParams:@"REPOSITORY" value:serverPM.currentRepository];
         [activity setKeyForTemplateParams:@"DOCNAME" value:fileName];
+        [activity setKeyForTemplateParams:@"mimeType" value:@"image/png"];
         [activitySimpleMapping addAttributeMappingsFromDictionary:@{@"templateParams":@"templateParams"}];
     }
     if (activity.type.length>0){

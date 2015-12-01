@@ -15,11 +15,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="saj-LP-fzW" customClass="EGOImageView">
-                        <rect key="frame" x="36" y="4" width="35" height="35"/>
+                        <rect key="frame" x="36" y="7" width="30" height="30"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="35" id="hd3-qg-TcH"/>
-                            <constraint firstAttribute="width" constant="35" id="uvo-GA-XzQ"/>
+                            <constraint firstAttribute="height" constant="30" id="hd3-qg-TcH"/>
+                            <constraint firstAttribute="width" constant="30" id="uvo-GA-XzQ"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="22" translatesAutoresizingMaskIntoConstraints="NO" id="aEU-ds-p96">
@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Space Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKS-aI-BWg">
-                        <rect key="frame" x="82" y="11" width="98" height="21"/>
+                        <rect key="frame" x="77" y="11" width="98" height="21"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="bem-eP-jyS"/>

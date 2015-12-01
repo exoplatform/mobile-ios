@@ -1176,7 +1176,6 @@ NSMutableData * data;
         NSString * fileExtension = [fileName substringFromIndex:lastPointRange.location+1];
         CFStringRef pathExtension = (__bridge CFStringRef)(fileExtension);
         CFStringRef type = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, NULL);
-        CFRelease(pathExtension);
         // The UTI can be converted to a mime type:
         NSString *mimeType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType);
         return mimeType;

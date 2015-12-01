@@ -27,6 +27,8 @@
 #import "LanguageHelper.h"
 #import "SpaceTableViewCell.h"
 #import "ApplicationPreferencesManager.h"
+#import "MobileFileUploadManager.h"
+
 
 // Horizontal margin to subviews. 
 #define kHorizontalMargin 10.0
@@ -41,11 +43,16 @@
 // Landscape image width 
 #define kLandscapeImageWidth (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 85.0 : 70.0)
 
+#define kUploadErrorAlertViewTag 100
+
 @interface MessageComposerViewController () {
     // Keep previous status bar style as the image picker changed it when displayed.
     UIStatusBarStyle _previousStatusBarStyle;
     BOOL _previousStatusBarHidden;
     SocialSpace * selectedSpace;
+    
+    UploadProgressViewController * uploadVC; // a view controller display the progress of the uploading process & allows to cancel the process.
+    MobileFileUploadManager * uploadManager; // handler the uploading process return the progress status & completion via Blocks
 }
 
 @property (nonatomic, readonly) UIButton *attPhotoButton;
@@ -316,7 +323,6 @@
         return;
     }
 
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     if (selectedSpace && (!selectedSpace.spaceId ||selectedSpace.spaceId.length ==0)){
         [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -328,65 +334,58 @@
     if([_txtvMessageComposer.text length] > 0)
     {
         NSString* fileAttachName = nil;
-        NSString* fileAttachURL = nil;
         
         if(self.attPhotoView.image)
         {
-            FilesProxy *fileProxy = [FilesProxy sharedInstance];
-            NSString * photosFolderPath;
-            if (selectedSpace && selectedSpace.spaceId) {
-               photosFolderPath = [NSString stringWithFormat:@"%@/rest/private/jcr/%@/%@/Groups%@/Documents",[ApplicationPreferencesManager sharedInstance].selectedAccount.serverUrl,[ApplicationPreferencesManager sharedInstance].currentRepository, [ApplicationPreferencesManager sharedInstance].defaultWorkspace, selectedSpace.groupId];
-            } else {
-                photosFolderPath =  [NSString stringWithFormat:@"%@/Public", fileProxy._strUserRepository];
-            }
+            /*
+             if has a attache photo:
+             1. Generate a name for this photo: mobile-[date-time].png
+             */
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd-hh-mm-ss"];
+            fileAttachName = [dateFormatter stringFromDate:[NSDate date]];
+                    
+            fileAttachName = [NSString stringWithFormat:@"%@%@.png",MOBILE_UPLOAD_FILE_PREFIX, fileAttachName];
+            fileAttachName = [fileAttachName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSLog(@"uploading file: %@",fileAttachName);
             
-            BOOL storageFolder = [fileProxy createNewFolderWithURL:photosFolderPath folderName:MOBILE_UPLOAD_DEST_FOLDER];
+            NSData *imageData = UIImagePNGRepresentation(self.attPhotoView.image);
             
-            if(storageFolder)
-            {
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd-hh-mm-ss"];
-                fileAttachName = [dateFormatter stringFromDate:[NSDate date]];
-                
-                //release the date formatter because, not needed after that piece of code
+//            2. Create the upload manager
+            [self showUploadProgressViewController];
+            uploadManager = [[MobileFileUploadManager alloc] init];
+            /*
+            3. Ask to upload the att photo with 2 handler blocks to get the upload process status & completion signal
+            4a. In case completion success: request to create the match activity
+            4b. In case of completion failed: ask to post the message any way if error connection or something. When User taps on "Cancel" button, just close the upload view controller
+             */
+            [uploadManager uploadFile:fileAttachName data:imageData toSpace:selectedSpace progess:^(float progress) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // process handler
+                    uploadVC.progressBar.progress = progress;
+                });
+            } completion:^(NSString * fileURL, BOOL success, NSError * error ) {
+                // completion handler
+                if (success) {
+                    self.postActivityProxy = [[SocialPostActivity alloc] init];
+                    self.postActivityProxy.delegate = self;
+                    [self.postActivityProxy postActivity:_txtvMessageComposer.text fileURL:fileURL fileName:fileAttachName toSpace:selectedSpace];
+                } else {
+                    if (!uploadVC || !uploadVC.isCanceling){ // If User hasn't hit "Cancel" so that is a connection problem --> display the alert message to ask if user want to post the message anyway
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (uploadVC && uploadVC.view.superview) {
+                                [uploadVC.view removeFromSuperview];
+                            }
+                            UIAlertView * uploadErrorAlert = [[UIAlertView alloc] initWithTitle:Localize(@"Upload failed") message:Localize(@"Unable to upload") delegate:self cancelButtonTitle:Localize(@"Cancel") otherButtonTitles:Localize(@"OK"), nil];
+                            uploadErrorAlert.tag = kUploadErrorAlertViewTag;
+                            [uploadErrorAlert show];
+                        });
+                    }
+                }
+            }];
 
-                fileAttachName = [NSString stringWithFormat:@"%@%@.png",MOBILE_UPLOAD_FILE_PREFIX, fileAttachName];
-                fileAttachName = [fileAttachName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                NSLog(@"uploading file: %@",fileAttachName);
-                
-                fileAttachURL = [NSString stringWithFormat:@"%@/%@/%@",photosFolderPath,MOBILE_UPLOAD_DEST_FOLDER,fileAttachName];
-                
-                NSData *imageData = UIImagePNGRepresentation(self.attPhotoView.image);
-                
-                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                            [self methodSignatureForSelector:@selector(sendImageInBackgroundForDirectory:data:)]];
-                [invocation setTarget:self];
-                [invocation setSelector:@selector(sendImageInBackgroundForDirectory:data:)];
-                [invocation setArgument:&fileAttachURL atIndex:2];
-                [invocation setArgument:&imageData atIndex:3];
-                [NSTimer scheduledTimerWithTimeInterval:0.1f invocation:invocation repeats:NO];
-                
-            }
-        }
-        
-        
-        if(_isPostMessage)
-        {
-            [self displayHudLoader];
-            
-            self.postActivityProxy = [[SocialPostActivity alloc] init];
-            self.postActivityProxy.delegate = self;
-
-            [self.postActivityProxy postActivity:_txtvMessageComposer.text fileURL:fileAttachURL fileName:fileAttachName toSpace:selectedSpace];
-        }
-        else
-        {
-            [self displayHudLoader];
-            
-            self.postCommentProxy = [[SocialPostCommentProxy alloc] init];
-            self.postCommentProxy.delegate = self;
-            [self.postCommentProxy postComment:_txtvMessageComposer.text forActivity:_strActivityID];
-            
+        } else {
+            [self postMessageWithoutAttachement];
         }
         
     }
@@ -404,6 +403,39 @@
     
 }
 
+- (void) showUploadProgressViewController {
+        uploadVC = [[UploadProgressViewController alloc] initWithNibName:@"UploadProgressViewController" bundle:nil];
+        uploadVC.delegate = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [uploadVC.view setFrame:self.view.frame];
+        [self.navigationController.view addSubview:uploadVC.view];
+        uploadVC.progressBar.progress = 0.0;
+        uploadVC.errorMessage.text = Localize(@"Uploading");
+        [uploadVC.cancelButton setTitle:Localize(@"Cancel") forState:UIControlStateNormal];
+        [uploadVC.cancelButton setTitle:Localize(@"Cancel") forState:UIControlStateHighlighted];
+        [_txtvMessageComposer resignFirstResponder];
+    });
+}
+
+- (void) postMessageWithoutAttachement {
+    if(_isPostMessage)
+    {
+        [self displayHudLoader];
+        self.postActivityProxy = [[SocialPostActivity alloc] init];
+        self.postActivityProxy.delegate = self;
+        
+        [self.postActivityProxy postActivity:_txtvMessageComposer.text fileURL:nil fileName:nil toSpace:selectedSpace];
+    } else
+    {
+        [self displayHudLoader];
+        self.postCommentProxy = [[SocialPostCommentProxy alloc] init];
+        self.postCommentProxy.delegate = self;
+        [self.postCommentProxy postComment:_txtvMessageComposer.text forActivity:_strActivityID];
+        
+    }
+
+}
+
 - (void)sendImageInBackgroundForDirectory:(NSString *)directory data:(NSData *)imageData
 {
     if (selectedSpace){
@@ -418,7 +450,20 @@
 
 - (IBAction)onBtnCancel:(id)sender
 {
+    /*
+     Stop the uploading process & close the upload view controller (if it's presenting)
+     */
+    if (uploadManager) {
+        [uploadManager cancelUpload];
+    }
+    if (uploadVC && uploadVC.view.superview) {
+        uploadVC.isCanceling = YES;
+        [uploadVC.view removeFromSuperview];
+    }
     
+    /*
+     Dismiss this view controller
+     */
     if([self.navigationItem.title isEqualToString:Localize(@"AttachedPhoto")])
     {
         [self cancelDisplayAttachedPhoto];
@@ -545,7 +590,6 @@
 #pragma mark Proxies Delegate Methods
 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {
-    
     if ([proxy isKindOfClass:[SocialSpaceProxy class]]){
         if (_socialSpaceProxy.mySpaces && _socialSpaceProxy.mySpaces.count>0){
             selectedSpace.spaceId = ((SocialSpace*)_socialSpaceProxy.mySpaces[0]).spaceId;
@@ -553,6 +597,9 @@
         }
     } else {
         [self hideLoaderImmediately:YES];
+        if (uploadVC && uploadVC.view.superview) {
+            [uploadVC.view removeFromSuperview];
+        }
         if (delegate && ([delegate respondsToSelector:@selector(messageComposerDidSendData)])) {
             [delegate messageComposerDidSendData];
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -602,9 +649,23 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
-    //      Remove the loader
-    [self hideLoader:NO];
+    if (alertView.tag == kUploadErrorAlertViewTag) {
+        switch (buttonIndex) {
+            case 0: {
+            }
+                break;
+            case 1: {
+                [self postMessageWithoutAttachement];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    } else {
+        //      Remove the loader
+        [self hideLoader:NO];
+    }
 }
 
 #pragma mark - ActionSheet Delegate
@@ -721,4 +782,16 @@
     }
 }
 
+
+#pragma mark - Upload View Controller Delegate
+/*
+ User did selected the Cancel button while uploading
+ */
+-(void) uploadViewController:(UploadProgressViewController *)uploadController didSelectCancel:(id)sender {
+    // Stop the uploading process
+    if (uploadManager) {
+        [uploadManager cancelUpload];        
+    }
+    [uploadController.view removeFromSuperview];
+}
 @end

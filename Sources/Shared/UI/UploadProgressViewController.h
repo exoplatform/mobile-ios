@@ -18,24 +18,25 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol UploadViewControllerDelegate;
-@interface UploadViewController : UIViewController
+#import "LanguageHelper.h"
 
-@property (nonatomic, assign) id<UploadViewControllerDelegate> delegate;
+@protocol UploadProgressViewControllerDelegate;
+@interface UploadProgressViewController : UIViewController
+
+@property (nonatomic, assign) id<UploadProgressViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessage;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (nonatomic) BOOL isCanceling;
 
 @end
 
 
-@protocol UploadViewControllerDelegate <NSObject>
+@protocol UploadProgressViewControllerDelegate <NSObject>
 
 @optional
--(void) uploadViewController:(UploadViewController *) uploadVC didSelectCancel:(id) sender;
+-(void) uploadViewController:(UploadProgressViewController *) uploadVC didSelectCancel:(id) sender;
 
 @end

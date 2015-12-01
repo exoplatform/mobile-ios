@@ -453,3 +453,8 @@
 "Confirm Delete" = "Êtes-vous sûr de vouloir supprimer cet élément ?";
 
 "Done" = "OK";
+
+"Unable to upload" = "Impossible d'envoyer la photo. Voulez vous publier le message ?";
+
+"Uploading" = "Téléchargement ...";
+

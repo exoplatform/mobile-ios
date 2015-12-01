@@ -652,10 +652,13 @@
 		9C34B91D1B044971003A2DF3 /* EL.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9C34B91C1B044971003A2DF3 /* EL.gif */; };
 		9C3E72101AE0AB24004142F9 /* SpaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		9C3E72111AE0AB24004142F9 /* SpaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */; };
+		9C44C5FC1C0D9213008D3295 /* MobileFileUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C44C5FB1C0D9213008D3295 /* MobileFileUploadManager.m */; };
+		9C44C6051C0DBC32008D3295 /* UploadProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C44C6011C0DAF41008D3295 /* UploadProgressViewController.xib */; };
 		9C4F7D921B2E8F9D003ACCFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4F7D911B2E8F9D003ACCFD /* Images.xcassets */; };
 		9C4F7D951B317C0B003ACCFD /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F7D941B317C0B003ACCFD /* UploadViewController.m */; };
 		9C5B3A0F1BA01107008C8C7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C5B3A111BA01107008C8C7B /* Localizable.strings */; };
 		9C5B3A131BA0126F008C8C7B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5B3A151BA0126F008C8C7B /* MainInterface.storyboard */; };
+		9C6267DE1C0EF8D7003A4EDE /* UploadProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6267DD1C0EF8D7003A4EDE /* UploadProgressViewController.m */; };
 		9C8BCC151B393C20009EDC06 /* PostActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BCC141B393C20009EDC06 /* PostActivity.m */; };
 		9CBF86E91B205BE000106F1B /* SocialSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF86E81B205BE000106F1B /* SocialSpace.m */; };
 		9CBF86EC1B215F2100106F1B /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF86EB1B215F2100106F1B /* AccountViewController.m */; };
@@ -1674,6 +1677,9 @@
 		9C3E720D1AE0AB24004142F9 /* SpaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceTableViewCell.h; sourceTree = "<group>"; };
 		9C3E720E1AE0AB24004142F9 /* SpaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceTableViewCell.m; sourceTree = "<group>"; };
 		9C3E720F1AE0AB24004142F9 /* SpaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpaceTableViewCell.xib; sourceTree = "<group>"; };
+		9C44C5FA1C0D9213008D3295 /* MobileFileUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileFileUploadManager.h; sourceTree = "<group>"; };
+		9C44C5FB1C0D9213008D3295 /* MobileFileUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileFileUploadManager.m; sourceTree = "<group>"; };
+		9C44C6011C0DAF41008D3295 /* UploadProgressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressViewController.xib; sourceTree = "<group>"; };
 		9C4F7D911B2E8F9D003ACCFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9C4F7D931B317C0B003ACCFD /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		9C4F7D941B317C0B003ACCFD /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
@@ -1681,6 +1687,8 @@
 		9C5B3A141BA0126F008C8C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9C5B3A161BA01276008C8C7B /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9C5B3A171BA0178F008C8C7B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9C6267DC1C0EF8D7003A4EDE /* UploadProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadProgressViewController.h; sourceTree = "<group>"; };
+		9C6267DD1C0EF8D7003A4EDE /* UploadProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadProgressViewController.m; sourceTree = "<group>"; };
 		9C8BCC131B393C20009EDC06 /* PostActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostActivity.h; sourceTree = "<group>"; };
 		9C8BCC141B393C20009EDC06 /* PostActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostActivity.m; sourceTree = "<group>"; };
 		9CBF86E71B205BE000106F1B /* SocialSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialSpace.h; sourceTree = "<group>"; };
@@ -2223,6 +2231,8 @@
 				464636DE13EC228700092723 /* SocialUserProfileCache.m */,
 				4656FD3413CDC50200328E41 /* SocialUserProfileProxy.h */,
 				4656FD3513CDC50500328E41 /* SocialUserProfileProxy.m */,
+				9C44C5FA1C0D9213008D3295 /* MobileFileUploadManager.h */,
+				9C44C5FB1C0D9213008D3295 /* MobileFileUploadManager.m */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -2382,6 +2392,9 @@
 				A60C63C8152968FA00F5A52A /* ImagePreviewViewController.xib */,
 				7CD4E5E713BDA92200F5015D /* MessageComposerViewController.h */,
 				7CD4E5E813BDA92400F5015D /* MessageComposerViewController.m */,
+				9C6267DC1C0EF8D7003A4EDE /* UploadProgressViewController.h */,
+				9C6267DD1C0EF8D7003A4EDE /* UploadProgressViewController.m */,
+				9C44C6011C0DAF41008D3295 /* UploadProgressViewController.xib */,
 				464F723F146181830085D3F9 /* Stream */,
 			);
 			name = Social;
@@ -4560,6 +4573,7 @@
 				1FCED34E1435B98500EC0B88 /* popoverArrowUpSimple.png in Resources */,
 				1FCED34F1435B98500EC0B88 /* popoverBg.png in Resources */,
 				1FCED3501435B98500EC0B88 /* popoverBg@2x.png in Resources */,
+				9C44C6051C0DBC32008D3295 /* UploadProgressViewController.xib in Resources */,
 				9C3E72111AE0AB24004142F9 /* SpaceTableViewCell.xib in Resources */,
 				1FCED3511435B98500EC0B88 /* popoverBgSimple.png in Resources */,
 				1FCD39ED143A9A6C00C814C5 /* DocumentActionPopupAddFolderIcon.png in Resources */,
@@ -5057,6 +5071,7 @@
 				46BE69E313D5B38300F62614 /* SocialActivityDetailsProxy.m in Sources */,
 				7CF3646A13D6C8310056E509 /* SocialPostCommentProxy.m in Sources */,
 				46DDC5AA13D763690026D036 /* SocialLikeActivityProxy.m in Sources */,
+				9C44C5FC1C0D9213008D3295 /* MobileFileUploadManager.m in Sources */,
 				572EAA07192AFBFD008CFB11 /* ATMHudView.m in Sources */,
 				572EAA08192AFBFD008CFB11 /* ATMProgressLayer.m in Sources */,
 				46DDC5AD13D764470026D036 /* SocialLike.m in Sources */,
@@ -5135,6 +5150,7 @@
 				577D5A2619C81FB1007B8A5B /* AuthenticateTabView.m in Sources */,
 				3D8ED7F4184DBB3F00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m in Sources */,
 				8958E67714A9C82400580EEB /* URLAnalyzer.m in Sources */,
+				9C6267DE1C0EF8D7003A4EDE /* UploadProgressViewController.m in Sources */,
 				1FCE235F14BA8DCF00ED95AB /* SocialRestProxy.m in Sources */,
 				572EAA2C192AFBFD008CFB11 /* UIView+SSToolkitAdditions.m in Sources */,
 				1FCE236214BA8E4300ED95AB /* SocialVersion.m in Sources */,
@@ -5831,6 +5847,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
@@ -5876,6 +5893,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
@@ -5922,6 +5940,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
@@ -5967,6 +5986,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0c42298a-5995-4072-ad79-2a4cb2272efb";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};

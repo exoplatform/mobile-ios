@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadProgressViewController">
+            <connections>
+                <outlet property="backgroundView" destination="fKK-VM-1Mt" id="Kia-KC-3tX"/>
+                <outlet property="cancelButton" destination="352-9i-46x" id="LaR-zM-HAj"/>
+                <outlet property="errorMessage" destination="hbV-J4-xU9" id="18t-8g-daC"/>
+                <outlet property="progressBar" destination="uTl-4n-NNy" id="LL7-WF-iXo"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKK-VM-1Mt">
+                    <rect key="frame" x="30" y="234" width="260" height="100"/>
+                    <subviews>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uTl-4n-NNy">
+                            <rect key="frame" x="26" y="49" width="208" height="2"/>
+                            <animations/>
+                        </progressView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="352-9i-46x">
+                            <rect key="frame" x="88" y="62" width="84" height="30"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="84" id="4BY-MZ-CDT"/>
+                                <constraint firstAttribute="height" constant="30" id="GtE-UD-NyE"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelAction:" destination="-1" eventType="touchUpInside" id="qka-Ze-nqH"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Uploading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbV-J4-xU9">
+                            <rect key="frame" x="93" y="18" width="74" height="18"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="260" id="0jd-xL-OK5"/>
+                        <constraint firstItem="uTl-4n-NNy" firstAttribute="leading" secondItem="fKK-VM-1Mt" secondAttribute="leading" constant="26" id="F7z-j3-8pm"/>
+                        <constraint firstAttribute="trailing" secondItem="uTl-4n-NNy" secondAttribute="trailing" constant="26" id="GLo-XA-xp8"/>
+                        <constraint firstItem="hbV-J4-xU9" firstAttribute="centerY" secondItem="fKK-VM-1Mt" secondAttribute="centerY" constant="-23" id="SG0-5v-waD"/>
+                        <constraint firstAttribute="centerX" secondItem="352-9i-46x" secondAttribute="centerX" id="fiE-2h-N7p"/>
+                        <constraint firstAttribute="bottom" secondItem="352-9i-46x" secondAttribute="bottom" constant="8" id="if7-M0-Ipt"/>
+                        <constraint firstItem="hbV-J4-xU9" firstAttribute="centerX" secondItem="fKK-VM-1Mt" secondAttribute="centerX" id="oIm-Ot-rzM"/>
+                        <constraint firstAttribute="centerY" secondItem="uTl-4n-NNy" secondAttribute="centerY" id="qvc-uo-WX9"/>
+                        <constraint firstAttribute="height" constant="100" id="yll-A0-b13"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.48838682432432434" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fKK-VM-1Mt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rBZ-uC-j8C"/>
+                <constraint firstItem="fKK-VM-1Mt" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="vLW-UW-sfX"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="340"/>
+        </view>
+    </objects>
+</document>

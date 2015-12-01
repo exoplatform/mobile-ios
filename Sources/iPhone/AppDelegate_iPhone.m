@@ -141,11 +141,6 @@
     
 }
 
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-}
-
-
 - (void)onBtnSigtOutDelegate {
     
     // Disable Auto Login so user won't be signed in automatically after

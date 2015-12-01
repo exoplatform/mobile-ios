@@ -17,34 +17,33 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
-#import "UploadViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "UploadProgressViewController.h"
 
-@interface UploadViewController ()
+@interface UploadProgressViewController ()
 
 @end
 
-@implementation UploadViewController
+@implementation UploadProgressViewController
 
 @synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.backgroundView.layer.cornerRadius = 5.0;
-    self.backgroundView.layer.shadowColor = [UIColor grayColor].CGColor;
-    self.view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    self.backgroundView.layer.borderWidth = 0.5;
+    self.backgroundView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.isCanceling = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.errorMessage.text = Localize(@"Uploading");
+        [self.cancelButton setTitle:Localize(@"Cancel") forState:UIControlStateNormal];
+        [self.cancelButton setTitle:Localize(@"Cancel") forState:UIControlStateHighlighted];
+    });
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)cancelAction:(id)sender {
     self.isCanceling = YES;
     if (delegate && [delegate respondsToSelector:@selector(uploadViewController:didSelectCancel:)]){
         [delegate uploadViewController:self didSelectCancel:sender];
     }
 }
-
 @end

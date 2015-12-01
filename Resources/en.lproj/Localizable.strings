@@ -453,3 +453,7 @@
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
 "Done" = "Done";
+
+"Unable to upload" = "Unable to upload the attached photo. Do you want to post the message anyway?";
+
+"Uploading" = "Uploading ...";

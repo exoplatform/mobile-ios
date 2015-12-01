@@ -24,6 +24,7 @@
 #import "LanguageHelper.h"
 #import "SpaceSelectionViewController.h"
 #import "SocialSpaceProxy.h"
+#import "UploadProgressViewController.h"
 
 @class ActivityStreamBrowseViewController;
 
@@ -31,7 +32,7 @@
 @protocol SocialMessageComposerDelegate;
 
 
-@interface MessageComposerViewController : eXoViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, SpaceSelectionDelegate, SocialProxyDelegate>
+@interface MessageComposerViewController : eXoViewController <UITextViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SocialProxyDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, SpaceSelectionDelegate, SocialProxyDelegate, UploadProgressViewControllerDelegate>
 {
 
     IBOutlet UIButton*                  _btnAttach;
@@ -75,6 +76,10 @@
 
 @property (retain, nonatomic) IBOutlet UITableView *spacesTableView;
 @property (retain, nonatomic) IBOutlet NSLayoutConstraint *spaceTableViewHeightConstraint;
+
+//upload View
+
+
 
 @end
 

@@ -17,25 +17,25 @@
 // 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 //
 
-#import <UIKit/UIKit.h>
-@protocol UploadViewControllerDelegate;
-@interface UploadViewController : UIViewController
+#import <Foundation/Foundation.h>
+#import "SocialSpace.h"
 
-@property (nonatomic, assign) id<UploadViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIView *backgroundView;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UILabel *errorMessage;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (nonatomic) BOOL isCanceling;
+typedef void(^ProgressCallBack)(float);
+typedef void(^CompletionCallBack)(NSString *, BOOL, NSError *);
 
+@interface MobileFileUploadManager : NSObject <NSURLSessionDelegate> {
+
+}
+
+@property (nonatomic, copy) ProgressCallBack progressCallBack;
+
+- (void) uploadFile:(NSString *)fileName data:(NSData *)data toSpace:(SocialSpace *) space progess:(ProgressCallBack) progress completion:(CompletionCallBack)completion;
+
+- (void) suspendUpload;
+
+- (void) resumeUpload;
+
+- (void) cancelUpload;
 @end
 
-
-@protocol UploadViewControllerDelegate <NSObject>
-
-@optional
--(void) uploadViewController:(UploadViewController *) uploadVC didSelectCancel:(id) sender;
-
-@end
