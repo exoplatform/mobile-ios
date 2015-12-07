@@ -104,9 +104,9 @@
 
 "Settings" = "Instellingen";
 
-"RememberMe" = "Stay signed in";
+"RememberMe" = "Blijf ingelogd";
 
-"AutoLogin" = "Auto login";
+"AutoLogin" = "AutoLogin";
 
 "KeepSelectedStream" = "Onthoud mijn filter";
 
@@ -376,7 +376,7 @@
 /*
  * Cloud sign up assistant 
  */
-"ServerNotAvailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServerNotAvailable" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
 
 "AccountAlreadyExists" = "An account already exists for this email, you will be redirected to the login screen";
 
@@ -404,9 +404,9 @@
 
 "TenantCreation" = "We are creating your intranet. Please come back when you receive our welcome email";
 
-"Username" = "Username";
+"Username" = "Gebruikersnaam";
 
-"Password" = "Password";
+"Password" = "Wachtwoord";
 
 "Your credentials" = "Your credentials";
 
