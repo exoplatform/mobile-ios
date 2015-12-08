@@ -190,7 +190,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
 #pragma mark - View lifecycle
 
 -(void)viewWillAppear:(BOOL)animated {
-
+    [super viewWillAppear:animated];
     [self setNavigationBarLabels];
     [self.tableView reloadData];
 
@@ -198,6 +198,7 @@ typedef NS_ENUM(NSInteger, SettingViewControllerSection) {
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     // Unselect the selected row if any
     NSIndexPath*	selection = [self.tableView indexPathForSelectedRow];
     if (selection)

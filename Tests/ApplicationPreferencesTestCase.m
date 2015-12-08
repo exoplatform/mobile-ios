@@ -56,11 +56,11 @@
     NSString *SERVER_NAME_NEW = [NSString stringWithFormat:@"New %@", TEST_SERVER_NAME];
     
     //     Get server list - should be empty
-    XCTAssertTrue([[serverManager serverList] count] == 0, @"Number of servers should be 0, was %d", [[serverManager serverList] count]);
+    XCTAssertTrue([[serverManager serverList] count] == 0, @"Number of servers should be 0, was %ld",(unsigned long)[[serverManager serverList] count]);
     
     //    Add new server
     [serverManager addEditServerWithServerName:TEST_SERVER_NAME andServerUrl:TEST_SERVER_URL withUsername:@"" andPassword:@"" atIndex:-1];
-    XCTAssertTrue([[serverManager serverList] count] == 1, @"Number of servers should be 1, was %d", [[serverManager serverList] count]);
+    XCTAssertTrue([[serverManager serverList] count] == 1, @"Number of servers should be 1, was %ld", (unsigned long)[[serverManager serverList] count]);
     
     //    Edit server
     [serverManager addEditServerWithServerName:SERVER_NAME_NEW andServerUrl:SERVER_URL_NEW withUsername:@"" andPassword:@"" atIndex:0];
@@ -71,7 +71,7 @@
     
     //    Delete server
     [serverManager deleteServerObjAtIndex:0];
-    XCTAssertTrue([[serverManager serverList] count] == 0, @"Number of servers should be 0, was %d", [[serverManager serverList] count]);
+    XCTAssertTrue([[serverManager serverList] count] == 0, @"Number of servers should be 0, was %ld", (unsigned long)[[serverManager serverList] count]);
 }
 
 - (void)testSelectServer

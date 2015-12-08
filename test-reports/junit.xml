@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<testsuites name="AllTestUnits" tests="113" failures="0" errors="0" time="6.918918">
+    <testsuite tests="113" failures="0" errors="0" time="6.918918" timestamp="2015-10-22T10:54:00GMT+07:00" name="Toplevel Test Suite">
+        <testcase classname="SocialLikeActivityProxyTestCase" name="testDeleteLikeActivity" time="0.079670">
+            <system-out>2015-10-22 10:53:52.890 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.906 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a636f10 : Unlike Activity&gt;"
+)
+2015-10-22 10:53:52.915 eXo[82792:1085189] Unlike Activity request stubbed (DELETE http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/like.json)
+2015-10-22 10:53:52.920 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 DELETE 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/like.json'
+2015-10-22 10:53:52.966 eXo[82792:1085181] I restkit.network:RKObjectRequestOperation.m:222 DELETE 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/like.json' (200 OK / 0 objects) [request=0.0071s mapping=0.0232s total=0.0542s]
+2015-10-22 10:53:52.966 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialLikeActivityProxyTestCase" name="testPostLikeActivity" time="0.005810">
+            <system-out>2015-10-22 10:53:52.967 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.968 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a6353d0 : Like Activity&gt;"
+)
+2015-10-22 10:53:52.970 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 POST 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/like.json'
+2015-10-22 10:53:52.971 eXo[82792:1085189] Like Activity request stubbed (POST http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/like.json)
+2015-10-22 10:53:52.972 eXo[82792:1085180] I restkit.network:RKObjectRequestOperation.m:222 POST 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/like.json' (200 OK / 0 objects) [request=0.0014s mapping=0.0005s total=0.0025s]
+2015-10-22 10:53:52.972 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameExtraction_CloudURL" time="0.000581">
+            <system-out>2015-10-22 10:53:52.973 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.973 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameExtraction_HTTPS_URL" time="0.000698">
+            <system-out>2015-10-22 10:53:52.974 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.974 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameExtraction_IP" time="0.000547">
+            <system-out>2015-10-22 10:53:52.975 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.975 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameExtraction_IP_With_Port" time="0.000517">
+            <system-out>2015-10-22 10:53:52.975 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.976 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameExtraction_Localhost" time="0.000557">
+            <system-out>2015-10-22 10:53:52.976 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.976 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameExtraction_LongURL" time="0.000509">
+            <system-out>2015-10-22 10:53:52.977 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.977 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameExtraction_NormalURL" time="0.000516">
+            <system-out>2015-10-22 10:53:52.977 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.978 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameExtraction_ShortURL" time="0.000562">
+            <system-out>2015-10-22 10:53:52.978 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.978 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameExtraction_URL_With_Port" time="0.000488">
+            <system-out>2015-10-22 10:53:52.979 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.979 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameIsCorrect" time="0.000527">
+            <system-out>2015-10-22 10:53:52.980 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.980 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testAccountNameIsNotCorrect" time="0.000654">
+            <system-out>2015-10-22 10:53:52.980 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.981 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testUsernameIsCorrect" time="0.000612">
+            <system-out>2015-10-22 10:53:52.982 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.982 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AccountInfoUtilsTestCase" name="testUsernameIsNotCorrect" time="0.000740">
+            <system-out>2015-10-22 10:53:52.983 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.983 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testCalculateAbsPath" time="0.004843">
+            <system-out>2015-10-22 10:53:52.984 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.988 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testConversionNaturalName_Arabic" time="0.004365">
+            <system-out>2015-10-22 10:53:52.989 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.993 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testConversionNaturalName_Chinese" time="0.005260">
+            <system-out>2015-10-22 10:53:52.993 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:52.998 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testConversionNaturalName_French" time="0.004176">
+            <system-out>2015-10-22 10:53:52.999 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.003 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testConversionNaturalName_Greek" time="0.003653">
+            <system-out>2015-10-22 10:53:53.003 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.006 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testConversionNaturalName_Hebrew" time="0.004468">
+            <system-out>2015-10-22 10:53:53.007 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.011 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testConversionNaturalName_Japanese" time="0.004283">
+            <system-out>2015-10-22 10:53:53.011 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.015 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testConversionNaturalName_Simple" time="0.015171">
+            <system-out>2015-10-22 10:53:53.016 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.030 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testConversionNaturalName_Special" time="0.004350">
+            <system-out>2015-10-22 10:53:53.031 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.035 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testConversionNaturalName_Vietnamese" time="0.005499">
+            <system-out>2015-10-22 10:53:53.036 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.041 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testCreateNewFolderWithURL" time="0.004860">
+            <system-out>2015-10-22 10:53:53.041 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.046 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testCreatUserRepositoryHomeUrl" time="0.004363">
+            <system-out>2015-10-22 10:53:53.046 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.050 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testFileActionWithError" time="0.005424">
+            <system-out>2015-10-22 10:53:53.051 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.053 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78f986e0 : Generic Failed Request&gt;"
+)
+2015-10-22 10:53:53.054 eXo[82792:1085189] Generic Failed Request request stubbed (DELETE http://httpbin.org/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt)
+2015-10-22 10:53:53.056 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testFileCopyAction" time="0.005045">
+            <system-out>2015-10-22 10:53:53.056 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.058 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78f717c0 : Generic Successful Request&gt;"
+)
+2015-10-22 10:53:53.059 eXo[82792:1085189] Generic Successful Request request stubbed (COPY http://httpbin.org/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt)
+2015-10-22 10:53:53.061 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testFileDeleteAction" time="0.005393">
+            <system-out>2015-10-22 10:53:53.062 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.064 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a63f7f0 : Generic Successful Request&gt;"
+)
+2015-10-22 10:53:53.064 eXo[82792:1085189] Generic Successful Request request stubbed (DELETE http://httpbin.org/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt)
+2015-10-22 10:53:53.067 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testFileMoveAction" time="0.021775">
+            <system-out>2015-10-22 10:53:53.067 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.085 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78f98a30 : Generic Successful Request&gt;"
+)
+2015-10-22 10:53:53.086 eXo[82792:1085189] Generic Successful Request request stubbed (MOVE http://httpbin.org/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/My-File.txt)
+2015-10-22 10:53:53.088 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testFileMoveActionFailsWhenSourceEqualsDestination" time="0.005377">
+            <system-out>2015-10-22 10:53:53.089 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.092 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a63e6d0 : Generic Successful Request&gt;"
+)
+2015-10-22 10:53:53.094 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testFileUploadAction" time="0.006120">
+            <system-out>2015-10-22 10:53:53.095 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.097 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a3183e0 : Generic Successful Request&gt;"
+)
+2015-10-22 10:53:53.098 eXo[82792:1085189] Generic Successful Request request stubbed (PUT http://httpbin.org/rest/private/jcr/repository/collaboration/Users/johndoe/Documents/)
+2015-10-22 10:53:53.100 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testGetContentOfFolder" time="0.018794">
+            <system-out>2015-10-22 10:53:53.101 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.103 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78f14ea0 : Get Folders And Files&gt;"
+)
+2015-10-22 10:53:53.104 eXo[82792:1085189] Get Folders And Files request stubbed (GET http://httpbin.org/rest/private/managedocument/getFoldersAndFiles?driveName=Personal&amp;workspaceName=collaboration&amp;currentFolder=/)
+2015-10-22 10:53:53.119 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testGetDrives" time="0.007839">
+            <system-out>2015-10-22 10:53:53.120 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.123 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a125430 : Get Drives&gt;"
+)
+2015-10-22 10:53:53.124 eXo[82792:1085189] Get Drives request stubbed (GET http://httpbin.org/rest/private/managedocument/getDrives?driveType=Group&amp;showPrivate=true)
+2015-10-22 10:53:53.127 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="FilesProxyTestCase" name="testIsExistedUrl" time="0.004163">
+            <system-out>2015-10-22 10:53:53.128 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.132 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ServerEditionTestCase" name="testLayoutIsCorrect_Offline" time="0.007124">
+            <system-out>2015-10-22 10:53:53.132 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.139 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ServerEditionTestCase" name="testTextFieldsAreEditableWhenUserIsConnectedWithOtherAccount" time="0.070253">
+            <system-out>2015-10-22 10:53:53.139 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.209 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ServerEditionTestCase" name="testTextFieldsAreEditableWhenUserIsOffline" time="0.026188">
+            <system-out>2015-10-22 10:53:53.210 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.235 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ServerEditionTestCase" name="testTextFieldsAreNotEditableWhenUserIsConnected" time="0.009709">
+            <system-out>2015-10-22 10:53:53.236 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.245 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SettingsTestCase" name="testDeleteAccountItem" time="0.009882">
+            <system-out>2015-10-22 10:53:53.246 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.256 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SettingsTestCase" name="testLayoutIsCorrect_Connected" time="0.006686">
+            <system-out>2015-10-22 10:53:53.256 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.262 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SettingsTestCase" name="testLayoutIsCorrect_Disconnected" time="0.006394">
+            <system-out>2015-10-22 10:53:53.263 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.269 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="URLAnalyzerTestCase" name="testCorrectServerURL" time="0.001022">
+            <system-out>2015-10-22 10:53:53.269 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.270 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="URLAnalyzerTestCase" name="testExtractDomainFromURL_Failure" time="0.000513">
+            <system-out>2015-10-22 10:53:53.271 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.271 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="URLAnalyzerTestCase" name="testExtractDomainFromURL_Success" time="0.000524">
+            <system-out>2015-10-22 10:53:53.271 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.272 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="URLAnalyzerTestCase" name="testIncorrectServerURL" time="0.000844">
+            <system-out>2015-10-22 10:53:53.272 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.273 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="URLAnalyzerTestCase" name="testParserURLWithHTTPS" time="0.000515">
+            <system-out>2015-10-22 10:53:53.273 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.273 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="URLAnalyzerTestCase" name="testParserURLWithIPAddress" time="0.000511">
+            <system-out>2015-10-22 10:53:53.274 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.274 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="URLAnalyzerTestCase" name="testParserURLWithPath" time="0.000529">
+            <system-out>2015-10-22 10:53:53.274 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.275 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="URLAnalyzerTestCase" name="testParserURLWithPort" time="0.000486">
+            <system-out>2015-10-22 10:53:53.275 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.275 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="URLAnalyzerTestCase" name="testParserURLWithQueryParam" time="0.000510">
+            <system-out>2015-10-22 10:53:53.276 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.276 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ActivityModelTestCase" name="testActivityTimeIsConvertedInWords" time="0.000321"></testcase>
+        <testcase classname="ActivityModelTestCase" name="testActivityTypesAnswer" time="0.000119"></testcase>
+        <testcase classname="ActivityModelTestCase" name="testActivityTypesCalendar" time="0.000122"></testcase>
+        <testcase classname="ActivityModelTestCase" name="testActivityTypesContent" time="0.000096"></testcase>
+        <testcase classname="ActivityModelTestCase" name="testActivityTypesDefault" time="0.000092"></testcase>
+        <testcase classname="ActivityModelTestCase" name="testActivityTypesForum" time="0.000105"></testcase>
+        <testcase classname="ActivityModelTestCase" name="testActivityTypesSocial" time="0.000084"></testcase>
+        <testcase classname="ActivityModelTestCase" name="testActivityTypesWiki" time="0.000084"></testcase>
+        <testcase classname="AuthenticateScreen_iPhone_TestCase" name="testAccountListTabDoesnotExistWithOneAccount" time="0.118754">
+            <system-out>2015-10-22 10:53:53.278 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.397 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AuthenticateScreen_iPhone_TestCase" name="testAccountListTabExistsWithTwoAccounts" time="0.009741">
+            <system-out>2015-10-22 10:53:53.397 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.407 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AuthenticateScreen_iPhone_TestCase" name="testCredentialsPanelIsStartedFirst" time="0.005849">
+            <system-out>2015-10-22 10:53:53.407 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.413 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AuthenticateScreen_iPhone_TestCase" name="testOpenAccountListPanel" time="0.008599">
+            <system-out>2015-10-22 10:53:53.413 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.421 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AuthenticateScreen_iPhone_TestCase" name="testOpenCredentialsPanel" time="0.010209">
+            <system-out>2015-10-22 10:53:53.422 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.432 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AuthenticateScreen_iPhone_TestCase" name="testUsernamePasswordAccountNameAreSetWhenAccountIsSelected" time="0.011084">
+            <system-out>2015-10-22 10:53:53.432 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.443 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ApplicationPreferencesTestCase" name="testAddAndSelectServer" time="0.004868">
+            <system-out>2015-10-22 10:53:53.444 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.448 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ApplicationPreferencesTestCase" name="testAddEditDeleteServer" time="0.004887">
+            <system-out>2015-10-22 10:53:53.449 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.453 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ApplicationPreferencesTestCase" name="testHandleStartupURL_WithCloudURL" time="0.003859">
+            <system-out>2015-10-22 10:53:53.454 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.457 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ApplicationPreferencesTestCase" name="testHandleStartupURL_WithoutUsername" time="0.004190">
+            <system-out>2015-10-22 10:53:53.458 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.461 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ApplicationPreferencesTestCase" name="testHandleStartupURL_WithUsername" time="0.004106">
+            <system-out>2015-10-22 10:53:53.462 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.466 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ApplicationPreferencesTestCase" name="testSelectServer" time="0.005048">
+            <system-out>2015-10-22 10:53:53.466 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.471 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="ApplicationPreferencesTestCase" name="testServerAlreadyExists" time="0.004896">
+            <system-out>2015-10-22 10:53:53.471 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.476 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="LoginProxyTestCase" name="testAccountIsCreated_WithCloudURL" time="2.005176">
+            <system-out>2015-10-22 10:53:53.476 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:53.477 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a69e670 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a68c1b0 : Platform Information&gt;"
+)
+2015-10-22 10:53:53.480 eXo[82792:1085189] Successful Authenticate challenge request stubbed (GET http://mytenant.exoplatform.net/rest/private/)
+2015-10-22 10:53:53.482 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://mytenant.exoplatform.net/rest/private/platform/info#'
+2015-10-22 10:53:53.482 eXo[82792:1085189] Platform Information request stubbed (GET http://mytenant.exoplatform.net/rest/private/platform/info#)
+2015-10-22 10:53:53.495 eXo[82792:1085181] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://mytenant.exoplatform.net/rest/private/platform/info#' (200 OK / 1 objects) [request=0.0117s mapping=0.0013s total=0.0134s]
+</system-out>
+        </testcase>
+        <testcase classname="LoginProxyTestCase" name="testAccountIsCreated_WithIPAddress" time="2.039455">
+            <system-out>2015-10-22 10:53:55.482 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:55.483 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a69e670 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a68c1b0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fbb440 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcbb00 : Platform Information&gt;"
+)
+2015-10-22 10:53:55.485 eXo[82792:1085189] Successful Authenticate challenge request stubbed (GET http://192.168.4.42:8080/rest/private/)
+2015-10-22 10:53:55.487 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://192.168.4.42:8080/rest/private/platform/info#'
+2015-10-22 10:53:55.488 eXo[82792:1085189] Platform Information request stubbed (GET http://192.168.4.42:8080/rest/private/platform/info#)
+2015-10-22 10:53:55.489 eXo[82792:1085181] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://192.168.4.42:8080/rest/private/platform/info#' (200 OK / 1 objects) [request=0.0012s mapping=0.0008s total=0.0024s]
+</system-out>
+        </testcase>
+        <testcase classname="LoginProxyTestCase" name="testAccountIsCreated_WithPlatformURL" time="2.069602">
+            <system-out>2015-10-22 10:53:57.521 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:57.523 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a69e670 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a68c1b0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fbb440 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcbb00 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcb2b0 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fd39e0 : Platform Information&gt;"
+)
+2015-10-22 10:53:57.525 eXo[82792:1085189] Successful Authenticate challenge request stubbed (GET http://intranet.mycompany.com/rest/private/)
+2015-10-22 10:53:57.527 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://intranet.mycompany.com/rest/private/platform/info#'
+2015-10-22 10:53:57.527 eXo[82792:1085189] Platform Information request stubbed (GET http://intranet.mycompany.com/rest/private/platform/info#)
+2015-10-22 10:53:57.529 eXo[82792:1085179] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://intranet.mycompany.com/rest/private/platform/info#' (200 OK / 1 objects) [request=0.0015s mapping=0.0008s total=0.0028s]
+</system-out>
+        </testcase>
+        <testcase classname="LoginProxyTestCase" name="testAuthenticateAndGetPlatformInfo" time="0.009653">
+            <system-out>2015-10-22 10:53:59.591 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.593 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a69e670 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a68c1b0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fbb440 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcbb00 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcb2b0 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fd39e0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fc4510 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fd6950 : Platform Information&gt;"
+)
+2015-10-22 10:53:59.595 eXo[82792:1085189] Successful Authenticate challenge request stubbed (GET http://httpbin.org/rest/private/)
+2015-10-22 10:53:59.597 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://httpbin.org/rest/private/platform/info#'
+2015-10-22 10:53:59.598 eXo[82792:1085189] Platform Information request stubbed (GET http://httpbin.org/rest/private/platform/info#)
+2015-10-22 10:53:59.599 eXo[82792:1085181] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://httpbin.org/rest/private/platform/info#' (200 OK / 1 objects) [request=0.0012s mapping=0.0007s total=0.0024s]
+</system-out>
+        </testcase>
+        <testcase classname="LoginProxyTestCase" name="testAuthenticationFailure" time="0.026653">
+            <system-out>2015-10-22 10:53:59.601 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.602 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a69e670 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a68c1b0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fbb440 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcbb00 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcb2b0 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fd39e0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fc4510 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fd6950 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a6559f0 : Failed Authenticate challenge&gt;"
+)
+2015-10-22 10:53:59.604 eXo[82792:1085189] Failed Authenticate challenge request stubbed (GET http://httpbin.org/rest/private/)
+2015-10-22 10:53:59.626 eXo[82792:1085153] ERROR: Error Domain=NSURLErrorDomain Code=-1013 "(null)" UserInfo={NSErrorFailingURLKey=http://httpbin.org/rest/private/, NSErrorFailingURLStringKey=http://httpbin.org/rest/private/}
+</system-out>
+        </testcase>
+        <testcase classname="LoginProxyTestCase" name="testNoAccountIsCreatedWithLoginFailure" time="0.005073">
+            <system-out>2015-10-22 10:53:59.628 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.630 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a69e670 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a68c1b0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fbb440 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcbb00 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcb2b0 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fd39e0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fc4510 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fd6950 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a6559f0 : Failed Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a11f8b0 : Failed Authenticate challenge&gt;"
+)
+2015-10-22 10:53:59.632 eXo[82792:1085189] Failed Authenticate challenge request stubbed (GET http://httpbin.org/rest/private/)
+2015-10-22 10:53:59.632 eXo[82792:1085153] ERROR: Error Domain=NSURLErrorDomain Code=-1013 "(null)" UserInfo={NSErrorFailingURLKey=http://httpbin.org/rest/private/, NSErrorFailingURLStringKey=http://httpbin.org/rest/private/}
+</system-out>
+        </testcase>
+        <testcase classname="LoginProxyTestCase" name="testRetrievePlatformInfo" time="0.009639">
+            <system-out>2015-10-22 10:53:59.633 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.636 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a69e670 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a68c1b0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fbb440 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcbb00 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fcb2b0 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fd39e0 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fc4510 : Successful Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78fd6950 : Platform Information&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a6559f0 : Failed Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x7a11f8b0 : Failed Authenticate challenge&gt;",
+    "&lt;OHHTTPStubsDescriptor 0x78e322b0 : Platform Information&gt;"
+)
+2015-10-22 10:53:59.638 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://httpbin.org/rest/platform/info'
+2015-10-22 10:53:59.639 eXo[82792:1085189] Platform Information request stubbed (GET http://httpbin.org/rest/platform/info)
+2015-10-22 10:53:59.641 eXo[82792:1085216] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://httpbin.org/rest/platform/info' (200 OK / 1 objects) [request=0.0017s mapping=0.0009s total=0.0035s]
+</system-out>
+        </testcase>
+        <testcase classname="SocialActivityDetailsProxyTestCase" name="testCommentActivityResourcePath" time="0.001818">
+            <system-out>2015-10-22 10:53:59.643 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.644 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialActivityDetailsProxyTestCase" name="testGetActivityComments" time="0.019924">
+            <system-out>2015-10-22 10:53:59.645 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.646 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a318cf0 : Activity Comments&gt;"
+)
+2015-10-22 10:53:59.648 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/comments.json'
+2015-10-22 10:53:59.649 eXo[82792:1085189] Activity Comments request stubbed (GET http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/comments.json)
+2015-10-22 10:53:59.663 eXo[82792:1085216] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/comments.json' (200 OK / 1 objects) [request=0.0129s mapping=0.0021s total=0.0156s]
+2015-10-22 10:53:59.664 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialActivityDetailsProxyTestCase" name="testGetActivityLikes" time="0.007019">
+            <system-out>2015-10-22 10:53:59.665 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.666 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78fd1af0 : Activity Likes&gt;"
+)
+2015-10-22 10:53:59.668 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/likes.json'
+2015-10-22 10:53:59.669 eXo[82792:1085189] Activity Likes request stubbed (GET http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/likes.json)
+2015-10-22 10:53:59.671 eXo[82792:1085216] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/likes.json' (200 OK / 1 objects) [request=0.0015s mapping=0.0012s total=0.0032s]
+2015-10-22 10:53:59.671 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialActivityDetailsProxyTestCase" name="testLikeActivityResourcePath" time="0.002252">
+            <system-out>2015-10-22 10:53:59.672 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.673 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialUserProfileProxyTestCase" name="testGetUserProfileFromUsername" time="0.005796">
+            <system-out>2015-10-22 10:53:59.675 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.676 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78fd5620 : Social User Profile&gt;"
+)
+2015-10-22 10:53:59.677 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/identity/organization/johndoe.json'
+2015-10-22 10:53:59.678 eXo[82792:1085189] Social User Profile request stubbed (GET http://httpbin.org/rest/private/api/social/v1-alpha3/portal/identity/organization/johndoe.json)
+2015-10-22 10:53:59.680 eXo[82792:1085250] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/identity/organization/johndoe.json' (200 OK / 1 objects) [request=0.0015s mapping=0.0007s total=0.0026s]
+2015-10-22 10:53:59.680 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialUserProfileCacheTestCase" name="testAddAndRetrieveProfileInCache" time="0.000493">
+            <system-out>2015-10-22 10:53:59.681 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.681 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="LanguageHelperTestCase" name="testEnglishLanguageIsUsed" time="0.001531">
+            <system-out>2015-10-22 10:53:59.681 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.682 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.682 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="LanguageHelperTestCase" name="testEnglishLanguageIsUsedByDefault" time="0.001063">
+            <system-out>2015-10-22 10:53:59.683 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.683 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.684 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="LanguageHelperTestCase" name="testFrenchLanguageIsUsed" time="0.012212">
+            <system-out>2015-10-22 10:53:59.684 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.685 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: fr
+2015-10-22 10:53:59.696 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="LanguageHelperTestCase" name="testGermanLanguageIsUsed" time="0.012932">
+            <system-out>2015-10-22 10:53:59.697 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.697 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: de
+2015-10-22 10:53:59.709 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="LanguageHelperTestCase" name="testGreekLanguageIsUsed" time="0.012384">
+            <system-out>2015-10-22 10:53:59.710 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.710 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: el
+2015-10-22 10:53:59.722 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="LanguageHelperTestCase" name="testPortugueseLanguageIsUsed" time="0.011573">
+            <system-out>2015-10-22 10:53:59.722 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.723 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: pt-BR
+2015-10-22 10:53:59.734 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="LanguageHelperTestCase" name="testSelectedLanguageIsUsed" time="0.001315">
+            <system-out>2015-10-22 10:53:59.734 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.735 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: fr
+2015-10-22 10:53:59.735 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="LanguageHelperTestCase" name="testSpanishLanguageIsUsed" time="0.002781">
+            <system-out>2015-10-22 10:53:59.736 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.736 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: es-ES
+2015-10-22 10:53:59.738 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialPostCommentProxyTestCase" name="testPostComment" time="0.005856">
+            <system-out>2015-10-22 10:53:59.739 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.740 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a31c990 : Post Comment&gt;"
+)
+2015-10-22 10:53:59.741 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 POST 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/comment.json'
+2015-10-22 10:53:59.742 eXo[82792:1085189] Post Comment request stubbed (POST http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/comment.json)
+2015-10-22 10:53:59.744 eXo[82792:1085216] I restkit.network:RKObjectRequestOperation.m:222 POST 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity/1e20cf09c06313bc0a9d372ecd6bd2a7/comment.json' (200 OK / 1 objects) [request=0.0015s mapping=0.0006s total=0.0025s]
+2015-10-22 10:53:59.744 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialActivityStreamProxyTestCase" name="testActivityStreamBeforeActivity" time="0.007083">
+            <system-out>2015-10-22 10:53:59.745 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.746 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a6ab550 : Activity Stream&gt;"
+)
+2015-10-22 10:53:59.747 eXo[82792:1085153] -[SocialActivityStreamProxy createPathForType:][Line 68] [DEBUG] private/api/social/v1-alpha3/portal/activity_stream/feed.json
+2015-10-22 10:53:59.747 eXo[82792:1085153] -[SocialActivityStreamProxy createPathForType:][Line 68] [DEBUG] private/api/social/v1-alpha3/portal/activity_stream/feed.json
+2015-10-22 10:53:59.748 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity_stream/feed.json?limit=25&amp;max_id=1e20cf09c06313bc0a9d372ecd6bd2a7'
+2015-10-22 10:53:59.749 eXo[82792:1085189] Activity Stream request stubbed (GET http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity_stream/feed.json?limit=25&amp;max_id=1e20cf09c06313bc0a9d372ecd6bd2a7)
+2015-10-22 10:53:59.751 eXo[82792:1085216] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity_stream/feed.json?limit=25&amp;max_id=1e20cf09c06313bc0a9d372ecd6bd2a7' (200 OK / 1 objects) [request=0.0013s mapping=0.0011s total=0.0028s]
+2015-10-22 10:53:59.751 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialActivityStreamProxyTestCase" name="testCreatePathForActivityType" time="0.002536">
+            <system-out>2015-10-22 10:53:59.752 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.753 eXo[82792:1085153] -[SocialActivityStreamProxy createPathForType:][Line 68] [DEBUG] private/api/social/v1-alpha3/portal/activity_stream/feed.json
+2015-10-22 10:53:59.753 eXo[82792:1085153] -[SocialActivityStreamProxy createPathForType:][Line 68] [DEBUG] private/api/social/v1-alpha3/portal/activity_stream/connections.json
+2015-10-22 10:53:59.753 eXo[82792:1085153] -[SocialActivityStreamProxy createPathForType:][Line 68] [DEBUG] private/api/social/v1-alpha3/portal/activity_stream/spaces.json
+2015-10-22 10:53:59.753 eXo[82792:1085153] -[SocialActivityStreamProxy createPathForType:][Line 68] [DEBUG] private/api/social/v1-alpha3/portal/activity_stream/e4f574dec0a80126368b5c3e4cc727b4.json
+2015-10-22 10:53:59.754 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialActivityStreamProxyTestCase" name="testGetActivityStream" time="0.006584">
+            <system-out>2015-10-22 10:53:59.755 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.755 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78fd1af0 : Activity Stream&gt;"
+)
+2015-10-22 10:53:59.756 eXo[82792:1085153] -[SocialActivityStreamProxy createPathForType:][Line 68] [DEBUG] private/api/social/v1-alpha3/portal/activity_stream/feed.json
+2015-10-22 10:53:59.756 eXo[82792:1085153] -[SocialActivityStreamProxy createPathForType:][Line 68] [DEBUG] private/api/social/v1-alpha3/portal/activity_stream/feed.json
+2015-10-22 10:53:59.758 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity_stream/feed.json?limit=25'
+2015-10-22 10:53:59.758 eXo[82792:1085189] Activity Stream request stubbed (GET http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity_stream/feed.json?limit=25)
+2015-10-22 10:53:59.760 eXo[82792:1085179] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity_stream/feed.json?limit=25' (200 OK / 1 objects) [request=0.0013s mapping=0.0011s total=0.0029s]
+2015-10-22 10:53:59.761 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialPostActivityTestCase" name="testCreatePath" time="0.001729">
+            <system-out>2015-10-22 10:53:59.761 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.762 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialPostActivityTestCase" name="testPostActivityWithFile" time="0.006223">
+            <system-out>2015-10-22 10:53:59.763 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.764 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78fdb860 : Post Activity&gt;"
+)
+2015-10-22 10:53:59.766 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 POST 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity.json'
+2015-10-22 10:53:59.767 eXo[82792:1085189] Post Activity request stubbed (POST http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity.json)
+2015-10-22 10:53:59.768 eXo[82792:1085216] I restkit.network:RKObjectRequestOperation.m:222 POST 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity.json' (200 OK / 1 objects) [request=0.0013s mapping=0.0010s total=0.0027s]
+2015-10-22 10:53:59.769 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialPostActivityTestCase" name="testPostActivityWithMessage" time="0.005710">
+            <system-out>2015-10-22 10:53:59.770 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.771 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78ed0750 : Post Activity&gt;"
+)
+2015-10-22 10:53:59.772 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 POST 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity.json'
+2015-10-22 10:53:59.773 eXo[82792:1085189] Post Activity request stubbed (POST http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity.json)
+2015-10-22 10:53:59.775 eXo[82792:1085186] I restkit.network:RKObjectRequestOperation.m:222 POST 'http://httpbin.org/rest/private/api/social/v1-alpha3/portal/activity.json' (200 OK / 1 objects) [request=0.0013s mapping=0.0008s total=0.0025s]
+2015-10-22 10:53:59.775 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialRestVersionProxyTestCase" name="testCreatePath" time="0.001807">
+            <system-out>2015-10-22 10:53:59.776 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.777 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialRestVersionProxyTestCase" name="testGetVersion" time="0.005553">
+            <system-out>2015-10-22 10:53:59.777 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.778 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a128ea0 : Get Latest Version&gt;"
+)
+2015-10-22 10:53:59.780 eXo[82792:1085153] I restkit.network:RKObjectRequestOperation.m:150 GET 'http://httpbin.org/rest/api/social/version/latest.json'
+2015-10-22 10:53:59.781 eXo[82792:1085189] Get Latest Version request stubbed (GET http://httpbin.org/rest/api/social/version/latest.json)
+2015-10-22 10:53:59.782 eXo[82792:1085250] I restkit.network:RKObjectRequestOperation.m:222 GET 'http://httpbin.org/rest/api/social/version/latest.json' (200 OK / 1 objects) [request=0.0015s mapping=0.0008s total=0.0029s]
+2015-10-22 10:53:59.783 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AuthenticateProxyTestCase" name="testCheckReachabilityFailedWithBadResponses" time="0.009948">
+            <system-out>2015-10-22 10:53:59.783 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.784 eXo[82792:1085189] Reachability check with response 100 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.785 eXo[82792:1085189] Reachability check with response 301 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.786 eXo[82792:1085189] Reachability check with response 304 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.787 eXo[82792:1085189] Reachability check with response 400 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.788 eXo[82792:1085189] Reachability check with response 401 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.788 eXo[82792:1085189] Reachability check with response 403 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.789 eXo[82792:1085189] Reachability check with response 404 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.790 eXo[82792:1085189] Reachability check with response 408 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.791 eXo[82792:1085189] Reachability check with response 500 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.792 eXo[82792:1085189] Reachability check with response 502 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.792 eXo[82792:1085189] Reachability check with response 503 request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.793 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AuthenticateProxyTestCase" name="testCheckReachabilityFailedWithError" time="0.001670">
+            <system-out>2015-10-22 10:53:59.793 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.794 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x78fca9b0 : Failed reachability check&gt;"
+)
+2015-10-22 10:53:59.794 eXo[82792:1085189] Failed reachability check request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.795 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="AuthenticateProxyTestCase" name="testCheckReachabilitySuccessful" time="0.001828">
+            <system-out>2015-10-22 10:53:59.795 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.795 eXo[82792:1085153] All stubs: (
+    "&lt;OHHTTPStubsDescriptor 0x7a1291d0 : Successful reachability check&gt;"
+)
+2015-10-22 10:53:59.796 eXo[82792:1085189] Successful reachability check request stubbed (HEAD http://httpbin.org)
+2015-10-22 10:53:59.797 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="CloudUtilsTestCase" name="testEmailFormat" time="0.001707">
+            <system-out>2015-10-22 10:53:59.797 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.799 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="CloudUtilsTestCase" name="testGetServerURLFromTenantName" time="0.000519">
+            <system-out>2015-10-22 10:53:59.799 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.799 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="CloudUtilsTestCase" name="testGetTenantNameFromServerURL" time="0.000480">
+            <system-out>2015-10-22 10:53:59.800 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.800 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="CloudUtilsTestCase" name="testGetUsernameFromEmail" time="0.000496">
+            <system-out>2015-10-22 10:53:59.800 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.800 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="SocialProxyTestCase" name="testCreatePath" time="0.000513">
+            <system-out>2015-10-22 10:53:59.801 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.801 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="UserPreferencesTestCase" name="testPersistUsernamePassword" time="0.000776">
+            <system-out>2015-10-22 10:53:59.802 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.802 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+        <testcase classname="UserPreferencesTestCase" name="testReloadUsernamePassword" time="0.000967">
+            <system-out>2015-10-22 10:53:59.803 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+2015-10-22 10:53:59.803 eXo[82792:1085153] -[LocalizationSystem setLanguage:][Line 74] [DEBUG] preferredLang: en
+</system-out>
+        </testcase>
+    </testsuite>
+</testsuites>

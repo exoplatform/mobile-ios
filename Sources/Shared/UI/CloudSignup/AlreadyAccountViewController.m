@@ -70,6 +70,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     //if the view is redirect from sign up view, auto fill the email entered in sign up view
     if(self.autoFilledEmail) {
         self.emailTf.text = self.autoFilledEmail;

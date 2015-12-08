@@ -30,7 +30,7 @@
 @interface DocumentsViewController_iPad : DocumentsViewController <UIPopoverControllerDelegate,WEPopoverControllerDelegate>
 {    
     WEPopoverController *_actionPopoverController;
-    UIPopoverController *_fileFolderActionsPopoverController;
+    WEPopoverController *_fileFolderActionsPopoverController;
 }
 
 - (void)dismissAddPhotoPopOver:(BOOL)animation;

@@ -89,6 +89,7 @@ static NSString *ServerObjCellIdentifier = @"ServerObj";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [_txtfServerName resignFirstResponder];
     [_txtfServerUrl resignFirstResponder];
 }

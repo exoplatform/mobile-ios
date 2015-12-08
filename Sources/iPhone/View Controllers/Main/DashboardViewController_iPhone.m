@@ -49,7 +49,8 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated {    
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     // Unselect the selected row if any
     NSIndexPath*	selection = [_tblGadgets indexPathForSelectedRow];
     if (selection)

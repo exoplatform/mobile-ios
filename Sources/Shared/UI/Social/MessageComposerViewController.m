@@ -648,47 +648,21 @@
 // i.e. user chooses an image for the 1st time
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    ImagePreviewViewController *imagePreview = [[ImagePreviewViewController alloc] initWithNibName:@"ImagePreviewViewController" bundle:nil];
-    __block __typeof__(imagePreview) bImagePreview = imagePreview; // create a weak reference to avoid retain cycle.
-    [imagePreview changeImageWithCompletion:^(void) {
-        // called when the user has chosen a photo and decides to change it (tap Change)
-        // remove image preview from nav bar to back to image picker.
-        [bImagePreview.navigationController popViewControllerAnimated:YES];
-    }];
-    [imagePreview removeImageWithCompletion:^(void) {
-        // called when the user has chosen a photo and decides to remove it (tap Remove)
-        // remove image in self view and dismiss image picker to back to self view.
-        self.attPhotoView.image = nil;
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
-            self._popoverPhotoLibraryController = nil;
-            [self reArrangeSubViews]; // rearrange the view to update the photo view.
-        } else {
-            // restore previous status bar
-            [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
-            [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-    }];
-    [imagePreview selectImageWithCompletion:^(void) {
-        // called when the user has chosen a photo and decides to keep it (tap OK)
-        // add photo to the self view and come back to such view.
-        [self addPhotoToView:[self resizeImage:bImagePreview.imageView.image]];
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
-            self._popoverPhotoLibraryController = nil;
-        } else {
-            // restore previous status bar
-            [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
-            [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
-            self.navigationController.toolbarHidden = YES;
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-    }];
+
+    [self addPhotoToView:[self resizeImage:info[UIImagePickerControllerOriginalImage]]];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self._popoverPhotoLibraryController dismissPopoverAnimated:YES];
+        self._popoverPhotoLibraryController = nil;
+    } else {
+        // restore previous status bar
+        [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
+        [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
+        self.navigationController.toolbarHidden = YES;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
     [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle];
     [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHidden];
-    [picker pushViewController:imagePreview animated:YES];
-    [imagePreview displayImage:[self resizeImage:info[UIImagePickerControllerOriginalImage]]];
 }
 
 

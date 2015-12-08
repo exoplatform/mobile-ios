@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivityDetailOwnerTableViewCell"/>
@@ -12,11 +12,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3" id="uaS-ke-1lO">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="default-avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="28" customClass="AvatarView">
                         <rect key="frame" x="5" y="6" width="45" height="45"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="45" id="2i3-u2-vsx"/>
                             <constraint firstAttribute="height" constant="45" id="MSa-J9-oUU"/>
@@ -24,16 +25,19 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39">
                         <rect key="frame" x="58" y="6" width="257" height="182"/>
+                        <animations/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hfj-GZ-zdo" customClass="EGOImageView">
                         <rect key="frame" x="70" y="58" width="236" height="100"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="750" constant="100" id="6Hx-lM-ueJ"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="34" translatesAutoresizingMaskIntoConstraints="NO" id="53">
-                        <rect key="frame" x="70" y="15" width="34" height="15"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="53">
+                        <rect key="frame" x="70" y="15" width="240" height="15"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="9kw-mh-d00"/>
@@ -42,8 +46,9 @@
                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="38" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                        <rect key="frame" x="69" y="35" width="38" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="241" translatesAutoresizingMaskIntoConstraints="NO" id="58">
+                        <rect key="frame" x="69" y="35" width="241" height="18"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="RWt-Hi-Uz6"/>
                         </constraints>
@@ -52,6 +57,7 @@
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="35">
                         <rect key="frame" x="70" y="162" width="32" height="20"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="sX3-Zz-rkc"/>
@@ -61,6 +67,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="Hfj-GZ-zdo" firstAttribute="leading" secondItem="uaS-ke-1lO" secondAttribute="leading" constant="70" id="1ZJ-WE-7bP"/>
                     <constraint firstItem="39" firstAttribute="top" secondItem="uaS-ke-1lO" secondAttribute="top" constant="6" id="BF4-uR-6pH"/>
@@ -68,24 +75,25 @@
                     <constraint firstItem="28" firstAttribute="leading" secondItem="uaS-ke-1lO" secondAttribute="leading" constant="5" id="Fg6-Fo-v59"/>
                     <constraint firstAttribute="bottom" secondItem="39" secondAttribute="bottom" constant="6" id="JLM-te-RcW"/>
                     <constraint firstItem="53" firstAttribute="top" secondItem="uaS-ke-1lO" secondAttribute="top" constant="15" id="L7a-Kr-zkx"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="58" secondAttribute="trailing" constant="10" id="Lul-CV-TVQ"/>
+                    <constraint firstAttribute="trailing" secondItem="58" secondAttribute="trailing" constant="10" id="Lul-CV-TVQ"/>
                     <constraint firstAttribute="bottom" secondItem="35" secondAttribute="bottom" constant="12" id="MPH-wf-lCf"/>
                     <constraint firstItem="58" firstAttribute="top" secondItem="53" secondAttribute="bottom" constant="5" id="PeQ-ao-UuB"/>
                     <constraint firstItem="35" firstAttribute="leading" secondItem="uaS-ke-1lO" secondAttribute="leading" constant="70" id="TyY-OR-5yG"/>
                     <constraint firstItem="Hfj-GZ-zdo" firstAttribute="top" secondItem="58" secondAttribute="bottom" constant="5" id="cTy-zF-YtZ"/>
                     <constraint firstItem="53" firstAttribute="leading" secondItem="28" secondAttribute="trailing" constant="20" id="lbm-tj-Xb4"/>
                     <constraint firstItem="39" firstAttribute="leading" secondItem="28" secondAttribute="trailing" constant="8" id="mFc-Sk-fIn"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="53" secondAttribute="trailing" constant="10" id="pkn-uS-8I0"/>
+                    <constraint firstAttribute="trailing" secondItem="53" secondAttribute="trailing" constant="10" id="pkn-uS-8I0"/>
                     <constraint firstAttribute="trailing" secondItem="Hfj-GZ-zdo" secondAttribute="trailing" constant="14" id="tFm-vc-Ofu"/>
                     <constraint firstItem="58" firstAttribute="leading" secondItem="28" secondAttribute="trailing" constant="19" id="wIR-as-v0R"/>
                     <constraint firstItem="35" firstAttribute="top" secondItem="Hfj-GZ-zdo" secondAttribute="bottom" constant="4" id="xnW-Wh-Ns9"/>
                     <constraint firstItem="28" firstAttribute="top" secondItem="uaS-ke-1lO" secondAttribute="top" constant="6" id="yzm-Ql-h5t"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
-                <outlet property="imageView" destination="Hfj-GZ-zdo" id="O9Q-6t-SWe"/>
-                <outlet property="imageViewHeightContraint" destination="6Hx-lM-ueJ" id="BEq-Iv-s3A"/>
+                <outlet property="attImageView" destination="Hfj-GZ-zdo" id="Pzg-dc-5ta"/>
+                <outlet property="attImageViewHeightContraint" destination="6Hx-lM-ueJ" id="mBE-Sy-FSA"/>
                 <outlet property="imgvAvatar" destination="28" id="43"/>
                 <outlet property="imgvMessageBg" destination="39" id="44"/>
                 <outlet property="lbDate" destination="35" id="52"/>
@@ -98,9 +106,4 @@
     <resources>
         <image name="default-avatar.png" width="59" height="59"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

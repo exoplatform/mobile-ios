@@ -74,7 +74,7 @@
 
 - (BOOL) selectAccountAtIndex:(int)index
 {
-    int serverCount = [self.manager.serverList count];
+    long serverCount = [self.manager.serverList count];
     if (serverCount == 0)
         return NO;
     if (index < 0 && index >= serverCount)

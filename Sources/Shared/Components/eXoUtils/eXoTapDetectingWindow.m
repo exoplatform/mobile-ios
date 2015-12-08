@@ -26,7 +26,8 @@
 @synthesize multipleTouches;
 
 - (instancetype)initWithViewToObserver:(UIView *)view andDelegate:(id<eXoTapDetectingWindowDelegate>)delegate {
-    if(self == [super init]) {
+    self = [super init];
+    if(self) {
         self.viewToObserve = view;
         self.controllerThatObserves = delegate;
     }

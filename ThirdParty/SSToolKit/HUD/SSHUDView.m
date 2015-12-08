@@ -96,6 +96,7 @@ static CGFloat kIndicatorSize = 40.0;
                                 NSParagraphStyleAttributeName: dingbatStyle
                                 }
                       context:nil];
+        [dingbatStyle release];
 	}
 }
 

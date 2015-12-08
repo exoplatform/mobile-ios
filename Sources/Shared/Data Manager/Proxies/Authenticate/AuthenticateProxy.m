@@ -305,7 +305,6 @@
 		return @"ERROR";
 	}
 	
-    NSString* urlContent = [[NSString alloc] init];
     
     
 	NSString* loginStr;
@@ -340,7 +339,7 @@
 	{
 		return @"ERROR";
 	}
-	urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
+	NSString * urlContent = [[NSMutableString alloc] initWithData:dataResponse encoding:NSISOLatin1StringEncoding];
 	
 	NSRange rgCheck = [urlContent rangeOfString:@"Sign in failed. Wrong username or password."];
 	if(rgCheck.length > 0)

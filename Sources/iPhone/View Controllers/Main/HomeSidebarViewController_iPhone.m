@@ -473,7 +473,7 @@
         static NSString *cellIdentifier = @"loadingCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
-            cell = [JTTableViewCellFactory loaderCellWithIdentifier:cellIdentifier];
+            cell = [JTTableViewCellFactory newLoaderCellWithIdentifier:cellIdentifier];
         }
         return cell;
     } else if ([object conformsToProtocol:@protocol(JTTableViewCellModal)]) {

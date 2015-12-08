@@ -255,7 +255,9 @@ enum {
 
 #pragma mark - Configuration IHM
 - (NSArray *)configurationItems {
-    
+    // A weak reference to self, to be used in blocks
+    __unsafe_unretained typeof(self) weakSelf = self;
+    //
     accountItem = [[SLComposeSheetConfigurationItem alloc] init];
     // Give your configuration option a title.
     [accountItem setTitle:NSLocalizedString(@"Account",nil)];
@@ -286,10 +288,10 @@ enum {
     [accountItem setTapHandler:^(void){
         // Create an instance of your configuration view controller.
         // Transfer to your configuration view controller.
-        AccountViewController * accountVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AccountViewController"];
-        accountVC.delegate = self;
-        accountVC.allAccounts = allAccounts;
-        [self.navigationController pushViewController:accountVC animated:YES];
+        AccountViewController * accountVC = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"AccountViewController"];
+        accountVC.delegate = weakSelf;
+        accountVC.allAccounts = weakSelf->allAccounts;
+        [weakSelf.navigationController pushViewController:accountVC animated:YES];
     }];
     
     // space item
@@ -315,14 +317,13 @@ enum {
             break;
     }
     // Handle what happens when a user taps your option.
-    
     [spaceItem setTapHandler:^(void){
         // User can select a space only after authentification.
         if (loggingStatus == eXoStatusLoggedIn){
             SpaceViewController  * spaceSelectionVC = [[SpaceViewController alloc] initWithStyle:UITableViewStylePlain];
-            spaceSelectionVC.delegate = self;
-            spaceSelectionVC.account  = selectedAccount;
-            [self.navigationController pushViewController:spaceSelectionVC animated:YES];
+            spaceSelectionVC.delegate = weakSelf;
+            spaceSelectionVC.account  = weakSelf->selectedAccount;
+            [weakSelf.navigationController pushViewController:spaceSelectionVC animated:YES];
         }
     }];
     if (loggingStatus >= eXoStatusLoggedIn) {
@@ -752,9 +753,9 @@ NSMutableData * data;
                 title = NSLocalizedString(@"All uploads failed",nil);
             } else {
                 if (postActivity.items.count-postActivity.successfulUploads.count ==1){
-                    title = [NSString stringWithFormat:@"%lu %@",(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"upload failed",nil)];
+                    title = [NSString stringWithFormat:@"%ld %@",(unsigned long)(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"upload failed",nil)];
                 } else {
-                    title = [NSString stringWithFormat:@"%lu %@",(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"uploads failed",nil)];
+                    title = [NSString stringWithFormat:@"%ld %@",(unsigned long)(postActivity.items.count-postActivity.successfulUploads.count), NSLocalizedString(@"uploads failed",nil)];
                 }
             }
             
@@ -807,9 +808,9 @@ NSMutableData * data;
         if ([postItem.type isEqualToString:@"DOC_ACTIVITY"]) {
             if (postItem.fileUploadedName!=nil && postItem.fileUploadedURL!=nil){
                 message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", postItem.fileUploadedURL, postItem.fileUploadedName];
-//                NSString * thumbnailURL = [postItem.fileUploadedURL stringByReplacingOccurrencesOfString:@"/jcr/" withString:@"/thumbnailImage/custom:/"];
+                NSURL * thumbnailURL = [NSURL URLWithString:[postItem.fileUploadedURL stringByReplacingOccurrencesOfString:@"/jcr/" withString:@"/thumbnailImage/large/"]];
                 if (postItem.isImageItem){
-                    message = [message stringByAppendingString:[NSString stringWithFormat:@"\n<img src=\"%@\" width=600px height=auto/>",postItem.fileUploadedURL]];
+                    message = [message stringByAppendingString:[NSString stringWithFormat:@"\n<img src=\"%@\" >",thumbnailURL.relativePath]];
                 }
             }
         } else if ([postItem.type isEqualToString:@"LINK_ACTIVITY"]) {
@@ -817,7 +818,7 @@ NSMutableData * data;
             if (!title || title.length ==0){
                 title = postItem.url.absoluteString;
             }
-            message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", postItem.url, title];
+            message = [NSString stringWithFormat:@"<a href=\"%@\">%@</a><br/>", postItem.url.relativePath, title];
             
         }
 
@@ -889,14 +890,28 @@ NSMutableData * data;
         NSRange rangeOfDocLink = [fileURL rangeOfString:@"jcr"];
         NSString* docLink = [NSString stringWithFormat:@"/rest/%@", [fileURL substringFromIndex:rangeOfDocLink.location]];
         title = [NSString stringWithFormat:@"Shared a document <a href=\"%@\">%@</a>\"", docLink, fileName];
-        templateParams = @{
-                           @"DOCPATH":docPath,
-                           @"MESSAGE":message,
-                           @"DOCLINK":docLink,
-                           @"WORKSPACE":defaultWorkspace,
-                           @"REPOSITORY":currentRepository,
-                           @"DOCNAME":fileName
-                           };
+        NSString * mimeType = [self MIMETypeForFile:fileName];
+        if (mimeType && mimeType.length > 0) {
+            templateParams = @{
+                               @"DOCPATH":docPath,
+                               @"MESSAGE":message,
+                               @"DOCLINK":docLink,
+                               @"WORKSPACE":defaultWorkspace,
+                               @"REPOSITORY":currentRepository,
+                               @"DOCNAME":fileName,
+                               @"mimeType":mimeType
+                                   };
+        } else {
+            templateParams = @{
+                               @"DOCPATH":docPath,
+                               @"MESSAGE":message,
+                               @"DOCLINK":docLink,
+                               @"WORKSPACE":defaultWorkspace,
+                               @"REPOSITORY":currentRepository,
+                               @"DOCNAME":fileName
+                                   };
+
+        }
     }
     
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
@@ -1066,7 +1081,7 @@ NSMutableData * data;
                 
                 
                 // Get the metadata (TIFF, GPS, ...).
-                CGImageSourceRef providedImageSourceRef;
+                CGImageSourceRef providedImageSourceRef = nil;
                 if (postItem.url != nil){
                     providedImageSourceRef = CGImageSourceCreateWithURL((CFURLRef)postItem.url, NULL);
                 } else if (postItem.fileData != nil){
@@ -1075,6 +1090,11 @@ NSMutableData * data;
                 
                 NSDictionary * providedImageMetadata = (NSDictionary *) CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(providedImageSourceRef,0,NULL));
                 CFStringRef UTI = CGImageSourceGetType(providedImageSourceRef); //this is the type of image (e.g., public.jpeg)
+                if (providedImageSourceRef){
+                    CFRelease(providedImageSourceRef);                    
+                }
+
+                
                 NSDictionary *tiffDic =providedImageMetadata? [providedImageMetadata objectForKey:(NSString *)kCGImagePropertyTIFFDictionary] : nil;
                 
                 int orientation = (tiffDic == nil) ? kCGImagePropertyOrientationUp : [[tiffDic objectForKey:(NSString*)kCGImagePropertyOrientation] intValue];
@@ -1124,12 +1144,14 @@ NSMutableData * data;
                         //It will return false if something goes wrong
                         BOOL success = NO;
                         success = CGImageDestinationFinalize(destination);
-                        
+                        CFRelease(destination);
                         if(success) {
                             postItem.fileData = new_photoData;
                             postItem.url = nil;
                         }
                     }
+                    CFRelease(newPhotoSourceRef);
+                    
                     
                 }
             }
@@ -1146,6 +1168,21 @@ NSMutableData * data;
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
+-(NSString *) MIMETypeForFile:(NSString *)fileName {
+    NSRange lastPointRange = [fileName rangeOfString:@"." options:NSBackwardsSearch];
+    if (lastPointRange.location != NSNotFound) {
+        NSString * fileExtension = [fileName substringFromIndex:lastPointRange.location+1];
+        CFStringRef pathExtension = (__bridge CFStringRef)(fileExtension);
+        CFStringRef type = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, NULL);
+        CFRelease(pathExtension);
+        // The UTI can be converted to a mime type:
+        NSString *mimeType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType);
+        return mimeType;
+    }
+    
+    return nil;
 }
 
 @end

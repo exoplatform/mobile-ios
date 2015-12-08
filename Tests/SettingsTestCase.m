@@ -58,8 +58,8 @@
     
     XCTAssertEqualObjects(@"Settings", controller.title, @"Screen title should be: Settings, not %@", controller.title);
     
-    int nb = controller.tableView.numberOfSections;
-    XCTAssertEqual(3, nb, @"The Settings screen should contain 3 sections when NO user is connected, not %d", nb);
+    long nb = controller.tableView.numberOfSections;
+    XCTAssertEqual(3, nb, @"The Settings screen should contain 3 sections when NO user is connected, not %ld", nb);
     
 }
 
@@ -75,8 +75,8 @@
     
     XCTAssertEqualObjects(@"Settings", controller.title, @"Screen title should be Settings, not %@", controller.title);
     
-    int nb = controller.tableView.numberOfSections;
-    XCTAssertEqual(5, nb, @"The Settings screen should contain 5 sections when a user is connected, not %d", nb);
+    long nb = controller.tableView.numberOfSections;
+    XCTAssertEqual(5, nb, @"The Settings screen should contain 5 sections when a user is connected, not %ld", nb);
     
 }
 

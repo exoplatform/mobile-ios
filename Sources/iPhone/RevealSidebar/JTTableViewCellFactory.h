@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface JTTableViewCellFactory : NSObject
-+ (UITableViewCell *)loaderCellWithIdentifier:(NSString *)reuseIdentifier;
++ (UITableViewCell *)newLoaderCellWithIdentifier:(NSString *)reuseIdentifier;
 @end

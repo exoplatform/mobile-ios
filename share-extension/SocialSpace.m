@@ -22,13 +22,7 @@
 
 @implementation SocialSpace
 @synthesize avatarUrl, groupId, spaceId, name, displayName, url, spaceUrl;
--(void) requestForSpaceId {
-    NSString * path = [NSString stringWithFormat:@"private/api/social/v1-alpha3/portal/identity/space/%@.json", self.name];
-    path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    
-    
-}
 -(NSString *) description {
     return [NSString stringWithFormat:@"[name : %@] [url : %@] [id : %@]", self.name, self.url, self.spaceId];
 }
