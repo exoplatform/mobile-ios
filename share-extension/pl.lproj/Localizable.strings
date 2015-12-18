@@ -7,20 +7,20 @@
 */
 
 
-"All uploads failed" = "All uploads failed";
+"All uploads failed" = "Wszystkie przekazywania zakończyły się niepowodzeniem";
 
-"uploads failed" = "uploads failed";
+"uploads failed" = "przekazywania zakończyły się niepowodzeniem";
 
-"upload failed" = "upload failed";
+"upload failed" = "przekazywanie zakończyło się niepowodzeniem";
 
 "Cancel" = "Anuluj";
 
 "Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
+"%d item(s) cannot be uploaded" = "nie można przekazać %d pozycji";
 
-"File too large" = "File too large";
+"File too large" = "Zbyt duży plik";
 
-"Network error" = "Network error";
+"Network error" = "Błąd sieci";
 
-"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
+"Do you want to post the message anyway?" = "Czy nadal chcesz opublikować ten komunikat?";
