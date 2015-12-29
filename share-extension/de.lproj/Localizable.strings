@@ -7,20 +7,20 @@
 */
 
 
-"All uploads failed" = "All uploads failed";
+"All uploads failed" = "Alle Uploads sind fehlgeschlagen";
 
-"uploads failed" = "uploads failed";
+"uploads failed" = "Uploads fehlgeschlagen";
 
-"upload failed" = "upload failed";
+"upload failed" = "Upload fehlgeschlagen";
 
 "Cancel" = "Abbrechen";
 
 "Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
+"%d item(s) cannot be uploaded" = "%d Element(e) konnte(n) nicht hochgeladen werden";
 
-"File too large" = "File too large";
+"File too large" = "Datei zu groß";
 
-"Network error" = "Network error";
+"Network error" = "Netzwerkfehler";
 
-"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
+"Do you want to post the message anyway?" = "Möchten Sie die Nachricht trotzdem abschicken?";
