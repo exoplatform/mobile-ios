@@ -13,9 +13,9 @@
 
 "upload failed" = "Не вдалося завантажити";
 
-"Cancel" = "Скасувати";
+"Cancel" = "Cancel";
 
-"Post" = "Повідомлення";
+"Post" = "Post";
 
 "%d item(s) cannot be uploaded" = "%d файла(ів) не можуть бути завантажені";
 
