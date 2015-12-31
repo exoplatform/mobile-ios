@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Pagina de autentificare";
 
-"SignInButton" = "Conectare";
+"SignInButton" = "Connect";
 
-"SignInButton_In" = "pentru a";
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "Nume de utilizator";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Conectat(ă)";
+"Connected" = "Connected";
 
-"Sign In" = "Autentificare";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -114,7 +114,7 @@
 
 "Language" = "Limbi";
 
-"English" = "Engleză";
+"English" = "English";
 
 "French" = "Franceză";
 
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Flux activitate";
 
-"News" = "Flux Activități";
+"News" = "Activity Stream";
 
 "Details" = "Detalii";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Elimină";
 
-"All Updates" = "Toate Activitățile";
+"All Updates" = "All Activities";
 
-"My Connections" = "Colaboratorii mei";
+"My Connections" = "My Connections";
 
-"My Spaces" = "Spațiile mele";
+"My Spaces" = "My Spaces";
 
-"My Status" = "Activităţile mele";
+"My Status" = "My Activities";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "Activităţile mele";
+"Public" = "My Activities";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "Până la";
+"To" = "To";
 
-"in" = "în";
+"in" = "in";
 
 "space" = "space";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
-"Done" = "Făcut";
+"Done" = "Done";
