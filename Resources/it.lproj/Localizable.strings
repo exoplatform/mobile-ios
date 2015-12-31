@@ -12,19 +12,19 @@
 
 "SignInPageTitle" = "Pagina di login";
 
-"SignInButton" = "Connettarsi";
+"SignInButton" = "Connect";
 
-"SignInButton_In" = "a";
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "Nome utente";
 
 "PasswordPlaceholder" = "Password";
 
-"Last Login" = "Last login";
+"Last Login" = "Ultimo accesso";
 
-"Connected" = "Connesso";
+"Connected" = "Connected";
 
-"Sign In" = "Ingresso";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -104,7 +104,7 @@
 
 "Settings" = "Impostazioni";
 
-"RememberMe" = "Stay signed in";
+"RememberMe" = "Mantieni l'accesso";
 
 "AutoLogin" = "Auto login";
 
@@ -122,9 +122,9 @@
 
 "Spanish" = "Spagnolo";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "Portoghese (Brasile)";
 
-"Greek"= "Greek";
+"Greek" = "Greco";
 
 "Send" = "Invia";
 
@@ -148,7 +148,7 @@
 
 "ServerUrl" = "URL del server";
 
-"Social" = "Social";
+"Social" = "Rete";
 
 
 /*
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Flusso di attività";
 
-"News" = "Flusso Attività";
+"News" = "Activity Stream";
 
 "Details" = "Dettagli";
 
@@ -291,7 +291,7 @@
 
 "UpdateQuestion" = "ha aggiornato la domanda:";
 
-"Answered" = "has answered the question:";
+"Answered" = "ha risposto alla domanda:";
 
 "Asked" = "ha chiesto:";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Rimuovere";
 
-"All Updates" = "Tutte le attività";
+"All Updates" = "All Activities";
 
-"My Connections" = "Mio Network";
+"My Connections" = "My Connections";
 
-"My Spaces" = "Miei Spazi";
+"My Spaces" = "My Spaces";
 
-"My Status" = "Le mie attività";
+"My Status" = "My Activities";
 
 /*
  * Date message converter
@@ -424,32 +424,32 @@
  Post Activity to Space
  */
 
-"Public" = "Le mie attività";
+"Public" = "My Activities";
 
-"CannotLoadSpaceID" = "Unable to load the space's identity";
+"CannotLoadSpaceID" = "Impossibile caricare l'identità dello spazio";
 
-"PostActivityTo" = "Post activity to";
+"PostActivityTo" = "Pubblica attività su";
 
-"You didn't join any space" = "You didn't join any space";
+"You didn't join any space" = "Non fai parte di nessuno spazio";
 
-"CannotLoadSpace" = "Unable to load information about your spaces";
+"CannotLoadSpace" = "Impossibile caricare le informazioni riguardanti i tuoi spazi";
 
-"Loading spaces" = "Loading spaces ...";
+"Loading spaces" = "Caricamento spazi ...";
 
-"To" = "A";
+"To" = "To";
 
-"in" = "dentro";
+"in" = "in";
 
-"space" = "space";
+"space" = "spazio";
 
 /*
  Upload
  */
 
-"Upload failed" = "Upload failed";
+"Upload failed" = "Caricamento fallito";
 
-"Please try again later" = "Please try again later";
+"Please try again later" = "Ti preghiamo di riprovare più tardi";
 
-"Confirm Delete" = "Are you sure you want to delete this item ?";
+"Confirm Delete" = "Sei sicuro di voler eliminare questo elemento?";
 
-"Done" = "Fatto";
+"Done" = "Done";
