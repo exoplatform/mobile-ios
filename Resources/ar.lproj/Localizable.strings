@@ -12,19 +12,19 @@
 
 "SignInPageTitle" = "صفحة تسجيل الدّخول";
 
-"SignInButton" = "اتصال";
+"SignInButton" = "Connect";
 
-"SignInButton_In" = "إلى";
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "اسم المستخدم";
 
 "PasswordPlaceholder" = "كلمة السر";
 
-"Last Login" = "أخر تسجيل دخول";
+"Last Login" = "Last login";
 
-"Connected" = "متصل";
+"Connected" = "Connected";
 
-"Sign In" = "تسجيل الدخول";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -124,7 +124,7 @@
 
 "Portuguese-Brazil" = "اللغة البرتغالية (البرازيل)";
 
-"Greek" = "اليونانية";
+"Greek" = "Greek";
 
 "Send" = "إرسال";
 
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "الأنشطة و المستجدّات";
 
-"News" = "آخر الأخبار";
+"News" = "Activity Stream";
 
 "Details" = "تفاصيل";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "حذف";
 
-"All Updates" = "جميع الأنشطة";
+"All Updates" = "All Activities";
 
-"My Connections" = "علاقاتي";
+"My Connections" = "My Connections";
 
-"My Spaces" = "فضاءاتي";
+"My Spaces" = "My Spaces";
 
-"My Status" = "آخر أخباري";
+"My Status" = "My Activities";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "آخر أخباري";
+"Public" = "My Activities";
 
 "CannotLoadSpaceID" = "لا يمكن تحميل هوية الفضاء";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "تحميل فضاءات...";
 
-"To" = "إلى";
+"To" = "To";
 
-"in" = "في";
+"in" = "in";
 
 "space" = "فضاء";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "هل أنت متأكد من أنك تريد حذف هذا العنصر؟";
 
-"Done" = "عمله";
+"Done" = "Done";

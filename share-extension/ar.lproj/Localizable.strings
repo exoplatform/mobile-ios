@@ -13,9 +13,9 @@
 
 "upload failed" = "فشل في عملية التحميل";
 
-"Cancel" = "الغاء";
+"Cancel" = "Cancel";
 
-"Post" = "ردّ";
+"Post" = "Post";
 
 "%d item(s) cannot be uploaded" = "%d ملفا لم يتمّ تحميله بنجاح";
 
