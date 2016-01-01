@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Strona logowania";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Połącz";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "do";
 
 "UsernamePlaceholder" = "Nazwa użytkownika";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Ostatnie logowanie";
 
-"Connected" = "Connected";
+"Connected" = "Połączono";
 
-"Sign In" = "Sign In";
+"Sign In" = "Logowanie";
 
 /* 
  * Documents
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Strumień aktywności";
 
-"News" = "Activity Stream";
+"News" = "Strumień aktywności";
 
 "Details" = "Szczegóły";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Usuń";
 
-"All Updates" = "All Activities";
+"All Updates" = "Wszystkie Aktywności";
 
-"My Connections" = "My Connections";
+"My Connections" = "Moje połączenia";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Moje obszary";
 
-"My Status" = "My Activities";
+"My Status" = "Moje aktywności";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Moje aktywności";
 
 "CannotLoadSpaceID" = "Nie można załadować tożsamości miejsca";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Ładowanie miejsc ...";
 
-"To" = "To";
+"To" = "Do";
 
-"in" = "in";
+"in" = "w";
 
 "space" = "przestrzeń";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Czy na pewno chcesz usunąć ten element ?";
 
-"Done" = "Done";
+"Done" = "Zrobione";
