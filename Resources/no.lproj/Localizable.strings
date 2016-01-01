@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Innloggingsside";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Legg til i nettverk";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "Til";
 
 "UsernamePlaceholder" = "Brukernavn";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "I nettverk";
 
-"Sign In" = "Sign In";
+"Sign In" = "Logg inn";
 
 /* 
  * Documents
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Aktivitetsstrøm";
 
-"News" = "Activity Stream";
+"News" = "Aktivitetsstrøm";
 
 "Details" = "Detaljer";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Fjern";
 
-"All Updates" = "All Activities";
+"All Updates" = "Alle aktiviteter";
 
-"My Connections" = "My Connections";
+"My Connections" = "Mitt nettverk";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Mine fellesskap";
 
-"My Status" = "My Activities";
+"My Status" = "Mine aktiviteter";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Mine aktiviteter";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,7 +436,7 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Til";
 
 "in" = "in";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
-"Done" = "Done";
+"Done" = "Utført";
