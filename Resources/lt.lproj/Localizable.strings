@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Prisijungimo puslapis";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Prisijungti";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "į";
 
 "UsernamePlaceholder" = "Vartotojo vardas";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "Prisijungta";
 
-"Sign In" = "Sign In";
+"Sign In" = "Prisijungti";
 
 /* 
  * Documents
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Veiklos srautas";
 
-"News" = "Activity Stream";
+"News" = "Veiklos srautas";
 
 "Details" = "Išsamiai";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Pašalinti";
 
-"All Updates" = "All Activities";
+"All Updates" = "Visos veiklos";
 
-"My Connections" = "My Connections";
+"My Connections" = "Mano jungtys";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Mano erdvės";
 
-"My Status" = "My Activities";
+"My Status" = "Mano veiklos";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Mano veiklos";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Iki";
 
-"in" = "in";
+"in" = "iš";
 
 "space" = "space";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
-"Done" = "Done";
+"Done" = "Atlikta";
