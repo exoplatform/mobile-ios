@@ -12,7 +12,7 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "Connect";
+"SignInButton" = "اتصال";
 
 "SignInButton_In" = "to";
 
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Activity stream";
 
-"News" = "Activity Stream";
+"News" = "جریان فعالیت";
 
 "Details" = "Details";
 
@@ -438,7 +438,7 @@
 
 "To" = "To";
 
-"in" = "in";
+"in" = "در";
 
 "space" = "space";
 
