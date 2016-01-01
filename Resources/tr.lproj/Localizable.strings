@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Giriş Sayfası";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Bağlan";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "Kime";
 
 "UsernamePlaceholder" = "Kullanıcı Adı";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "Bağlandı";
 
-"Sign In" = "Sign In";
+"Sign In" = "Oturum Aç";
 
 /* 
  * Documents
@@ -104,7 +104,7 @@
 
 "Settings" = "Ayarlar";
 
-"RememberMe" = "Stay signed in";
+"RememberMe" = "Bağlı kal";
 
 "AutoLogin" = "Otomatik oturum aç";
 
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Etkinlik Akışı";
 
-"News" = "Activity Stream";
+"News" = "Etkinlik Akışı";
 
 "Details" = "Ayrıntılar";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Kaldır";
 
-"All Updates" = "All Activities";
+"All Updates" = "Tüm Faliyetler";
 
-"My Connections" = "My Connections";
+"My Connections" = "Bağlantılarım";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Alanlarım";
 
-"My Status" = "My Activities";
+"My Status" = "Faliyetlerim";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Faliyetlerim";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Bitiş Tarihi";
 
-"in" = "in";
+"in" = "içinde";
 
 "space" = "space";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
-"Done" = "Done";
+"Done" = "Bitmiş";
