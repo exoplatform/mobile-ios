@@ -12,19 +12,19 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "Connect";
+"SignInButton" = "連線";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "至";
 
 "UsernamePlaceholder" = "使用者名稱";
 
 "PasswordPlaceholder" = "密碼";
 
-"Last Login" = "Last login";
+"Last Login" = "最後登錄";
 
-"Connected" = "Connected";
+"Connected" = "連接";
 
-"Sign In" = "Sign In";
+"Sign In" = "登入";
 
 /* 
  * Documents
@@ -122,15 +122,15 @@
 
 "Spanish" = "西班牙文";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "葡萄牙文 (巴西)";
 
-"Greek"= "Greek";
+"Greek" = "希臘文";
 
 "Send" = "發送";
 
 "ServerList" = "伺服器清單";
 
-"Account" = "Account";
+"Account" = "帳號";
 
 "NewServer" = "新伺服器";
 
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "活動流";
 
-"News" = "Activity Stream";
+"News" = "活動流";
 
 "Details" = "詳細資料";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "刪除 ";
 
-"All Updates" = "All Activities";
+"All Updates" = "所有活動";
 
-"My Connections" = "My Connections";
+"My Connections" = "我的聯繫";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "我的空間";
 
-"My Status" = "My Activities";
+"My Status" = "我的活動";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "我的活動";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "至";
 
-"in" = "in";
+"in" = "在…之中";
 
 "space" = "space";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
-"Done" = "Done";
+"Done" = "完成";
