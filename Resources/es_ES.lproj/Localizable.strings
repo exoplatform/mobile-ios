@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Página de inicio de sesión";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Conectar";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "Para";
 
 "UsernamePlaceholder" = "Nombre de usuario";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Último inicio de sesión";
 
-"Connected" = "Connected";
+"Connected" = "Conectado";
 
-"Sign In" = "Sign In";
+"Sign In" = "Ingresar";
 
 /* 
  * Documents
@@ -124,7 +124,7 @@
 
 "Portuguese-Brazil" = "Portugués (Brasil)";
 
-"Greek" = "Greek";
+"Greek" = "Griego";
 
 "Send" = "Enviar";
 
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Flujo de actividades";
 
-"News" = "Activity Stream";
+"News" = "Flujo de actividades";
 
 "Details" = "Detalles";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Eliminar";
 
-"All Updates" = "All Activities";
+"All Updates" = "Todas las Actividades";
 
-"My Connections" = "My Connections";
+"My Connections" = "Mis conexiones";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Mis Espacios";
 
-"My Status" = "My Activities";
+"My Status" = "Mis Actividades";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Mis Actividades";
 
 "CannotLoadSpaceID" = "No se puede cargar la identidad del espacio";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Cargando espacios ...";
 
-"To" = "To";
+"To" = "Para";
 
-"in" = "in";
+"in" = "en";
 
 "space" = "espacio";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Está seguro que desea eliminar este elemento ?";
 
-"Done" = "Done";
+"Done" = "Hecho";
