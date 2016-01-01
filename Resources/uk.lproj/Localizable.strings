@@ -12,19 +12,19 @@
 
 "SignInPageTitle" = "Сторінка Входу";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Додати в контакти";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "до";
 
 "UsernamePlaceholder" = "Ім'я користувача";
 
 "PasswordPlaceholder" = "Пароль";
 
-"Last Login" = "Last login";
+"Last Login" = "Останній вхід в систему";
 
-"Connected" = "Connected";
+"Connected" = "В контактах";
 
-"Sign In" = "Sign In";
+"Sign In" = "Увійти";
 
 /* 
  * Documents
@@ -122,7 +122,7 @@
 
 "Spanish" = "Іспанська";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "Португальська (Бразилія)";
 
 "Greek" = "Грецька";
 
@@ -130,7 +130,7 @@
 
 "ServerList" = "Список серверів";
 
-"Account" = "Account";
+"Account" = "Аккаунт";
 
 "NewServer" = "Новий сервер";
 
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Стрічка діяльності";
 
-"News" = "Activity Stream";
+"News" = "Потік діяльності";
 
 "Details" = "Подробиці";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Видалити";
 
-"All Updates" = "All Activities";
+"All Updates" = "Всі діяльності";
 
-"My Connections" = "My Connections";
+"My Connections" = "Мої контакти";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Мої області";
 
-"My Status" = "My Activities";
+"My Status" = "Мої діяльності";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Мої діяльності";
 
 "CannotLoadSpaceID" = "Не вдається завантажити простір";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Завантаження робочої області...";
 
-"To" = "To";
+"To" = "До";
 
-"in" = "in";
+"in" = "у";
 
 "space" = "область";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Ви дійсно бажаєте видалити цей елемент ?";
 
-"Done" = "Done";
+"Done" = "Виконано";
