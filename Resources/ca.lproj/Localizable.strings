@@ -12,19 +12,19 @@
 
 "SignInPageTitle" = "Pàgina d'inici de sessió";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Connecta";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "a";
 
-"UsernamePlaceholder" = "Username";
+"UsernamePlaceholder" = "Nom d'usuari";
 
-"PasswordPlaceholder" = "Password";
+"PasswordPlaceholder" = "Contrasenya";
 
 "Last Login" = "Últim accés";
 
-"Connected" = "Connected";
+"Connected" = "Connectat";
 
-"Sign In" = "Sign In";
+"Sign In" = "Accedeix";
 
 /* 
  * Documents
@@ -34,9 +34,9 @@
 
 "NewFolderTitle" = "Nova carpeta";
 
-"RenameTitle" = "Rename";
+"RenameTitle" = "Reanomena";
 
-"Copy" = "Copy";
+"Copy" = "Copia";
 
 "Move" = "Talla";
 
@@ -44,7 +44,7 @@
 
 "Documents" = "Documents";
 
-"TakeAPicture" = "Take a picture";
+"TakeAPicture" = "Fes una Foto";
 
 "AttachedPhoto" = "Foto adjunta";
 
@@ -65,7 +65,7 @@
  * General
  */
 
-"Cancel" = "Cancel";
+"Cancel" = "Cancel·la";
 
 "DoneButton" = "Fet";
 
@@ -73,13 +73,13 @@
 
 "Success" = "Èxit";
 
-"Home" = "Home";
+"Home" = "Inici";
 
-"Loading" = "Loading...";
+"Loading" = "S'està carregant...";
 
 "LoadingURL" = "Carregant l'URL";
 
-"OK" = "OK";
+"OK" = "Accepta";
 
 "Disconnect" = "Desconnecta";
 
@@ -95,42 +95,42 @@
 
 "Fullscreen" = "Pantalla completa";
 
-"Close" = "Close";
+"Close" = "Tanca";
 
 
 /*
  * Settings
  */
 
-"Settings" = "Settings";
+"Settings" = "Configuració";
 
 "RememberMe" = "Mantenir la sessió iniciada";
 
 "AutoLogin" = "Auto login";
 
-"KeepSelectedStream" = "Remember my filter";
+"KeepSelectedStream" = "Recorda el meu filtre";
 
 "ShowPrivateDrive" = "Mostra la meva unitat privada";
 
-"Language" = "Languages";
+"Language" = "Idiomes";
 
-"English" = "English";
+"English" = "Anglès";
 
-"French" = "French";
+"French" = "Francès";
 
-"German" = "German";
+"German" = "Alemany";
 
-"Spanish" = "Spanish";
+"Spanish" = "Castellà";
 
 "Portuguese-Brazil" = "Portuguès (Brasil)";
 
-"Greek" = "Greek";
+"Greek" = "Grec";
 
-"Send" = "Send";
+"Send" = "Envia";
 
 "ServerList" = "Llista de servidors";
 
-"Account" = "Account";
+"Account" = "Compte";
 
 "NewServer" = "Nou servidor";
 
@@ -175,13 +175,13 @@
 
 "EmptyFolder" = "Aquesta carpeta és buida";
 
-"UnreadableFile" = "This file cannot be opened on the application";
+"UnreadableFile" = "Aquest fitxer no es pot obrir a l'aplicació";
 
 "NoActivities" = "Cap activitat ha estat publicada al teu fil d'activitats";
 
 "NoGadget" = "No té gadgets en les seves Apps";
 
-"MessageInfo" = "Information";
+"MessageInfo" = "Informació";
 
 "MessageErrorServer" = "No pot afegir un servidor amb un nom o adreça url buits";
 
@@ -255,9 +255,9 @@
 
 "ActivityStream" = "Flux d'activitats";
 
-"News" = "Activity Stream";
+"News" = "Flux d'Activitat";
 
-"Details" = "Details";
+"Details" = "Detalls";
 
 "comments(%d)" = "Comentaris(%d)";
 
@@ -269,9 +269,9 @@
 
 "UpdatingActivity" = "L'actualitzant l'activitat";
 
-"PostingActivity" = "Post";
+"PostingActivity" = "Publica";
 
-"CommentActivity" = "Comment";
+"CommentActivity" = "Comentari";
 
 "GettingActivityDetail" = "Obtenint el detall de l'activitat";
 
@@ -305,33 +305,33 @@
 
 "Description" = "Descripció";
 
-"Location" = "Location";
+"Location" = "Ubicació";
 
 "StartTime" = "Hora d'inici";
 
 "EndTime" = "Hora de finalització";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "Ningú ha comentat, sigues el primer";
 
 "Image Preview" = "Previsualització de la imatge";
 
-"Change" = "Change";
+"Change" = "Canvia";
 
-"Remove" = "Remove";
+"Remove" = "Elimina";
 
-"All Updates" = "All Activities";
+"All Updates" = "Totes les Activitats";
 
-"My Connections" = "My Connections";
+"My Connections" = "Les Meves Connexions";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Els Meus Espais";
 
-"My Status" = "My Activities";
+"My Status" = "Les Meves Activitats";
 
 /*
  * Date message converter
  */
 
-"Today" = "Today";
+"Today" = "Avui";
 
 "DateFmt" = "%1$@%2$@%3$@%4$@";
 
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Les Meves Activitats";
 
 "CannotLoadSpaceID" = "No es pot carregar la identitat de l'espai";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Carregant espais...";
 
-"To" = "To";
+"To" = "A";
 
-"in" = "in";
+"in" = "en";
 
 "space" = "espai";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Segur de vol suprimir aquest element ?";
 
-"Done" = "Done";
+"Done" = "Fet";
