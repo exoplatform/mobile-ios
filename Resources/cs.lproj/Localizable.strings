@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Přihlašovací stránka";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Přidat";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "do";
 
 "UsernamePlaceholder" = "Uživatelské jméno";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Connected";
+"Connected" = "V seznamu kontaktů";
 
-"Sign In" = "Sign In";
+"Sign In" = "Přihlásit se";
 
 /* 
  * Documents
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Sled aktivit";
 
-"News" = "Activity Stream";
+"News" = "Sled aktivit";
 
 "Details" = "Podrobnosti";
 
@@ -291,7 +291,7 @@
 
 "UpdateQuestion" = "aktualizoval(a) otázku:";
 
-"Answered" = "has answered the question:";
+"Answered" = "odpověděl(a) na otázku:";
 
 "Asked" = "se zeptal(a):";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Odstranit";
 
-"All Updates" = "All Activities";
+"All Updates" = "Všechny aktivity";
 
-"My Connections" = "My Connections";
+"My Connections" = "Moje kontakty";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Moje skupiny";
 
-"My Status" = "My Activities";
+"My Status" = "Moje aktivity";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Moje aktivity";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "To";
+"To" = "Do";
 
-"in" = "in";
+"in" = "v";
 
 "space" = "space";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
-"Done" = "Done";
+"Done" = "Hotovo";
