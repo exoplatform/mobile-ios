@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Login-Seite";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Verbinden";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "bis";
 
 "UsernamePlaceholder" = "Benutzername";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Letzter Login";
 
-"Connected" = "Connected";
+"Connected" = "Verbunden";
 
-"Sign In" = "Sign In";
+"Sign In" = "Anmelden";
 
 /* 
  * Documents
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Aktivitätsstrom";
 
-"News" = "Activity Stream";
+"News" = "Aktivitätsstrom";
 
 "Details" = "Details";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Entfernen";
 
-"All Updates" = "All Activities";
+"All Updates" = "Alle Aktivitäten";
 
-"My Connections" = "My Connections";
+"My Connections" = "Meine Verbindungen";
 
-"My Spaces" = "My Spaces";
+"My Spaces" = "Meine Räume";
 
-"My Status" = "My Activities";
+"My Status" = "Meine Aktivitäten";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "My Activities";
+"Public" = "Meine Aktivitäten";
 
 "CannotLoadSpaceID" = "Die Identität des Raums konnte nicht geladen werden";
 
@@ -436,7 +436,7 @@
 
 "Loading spaces" = "Räume werden geladen...";
 
-"To" = "To";
+"To" = "An";
 
 "in" = "in";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Möchten Sie dieses Element wirklich löschen ?";
 
-"Done" = "Done";
+"Done" = "Erledigt";
