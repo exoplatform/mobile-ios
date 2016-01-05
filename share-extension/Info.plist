@@ -26,13 +26,13 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.10</string>
+	<string>2.11</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.10.20151214</string>
+	<string>2.11.20160105</string>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
