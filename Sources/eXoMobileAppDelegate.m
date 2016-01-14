@@ -20,6 +20,7 @@
 #import "eXoMobileAppDelegate.h"
 #import "LanguageHelper.h"
 #import "ApplicationPreferencesManager.h"
+#import "defines.h"
 #import <Fabric/Fabric.h>
 @implementation eXoMobileAppDelegate
 
@@ -31,6 +32,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     [[LanguageHelper sharedInstance] loadLocalizableStringsForCurrentLanguage];
+    
+    // Set eXo's custom User-Agent header in requests sent by the webviews (e.g. eXoDisplayViewController)
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:kUserAgentHeader, @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+    
     return YES;
 }
 
