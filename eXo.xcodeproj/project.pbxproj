@@ -5365,7 +5365,6 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -5415,7 +5414,6 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
 		};
@@ -5449,7 +5447,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64 i386";
 			};
 			name = "Distribution AdHoc";
 		};
@@ -5501,7 +5499,6 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 arm64";
 			};
 			name = "Distribution AdHoc";
 		};
@@ -5535,7 +5532,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64 i386";
 			};
 			name = "Distribution AppStore";
 		};
@@ -5588,7 +5585,6 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 arm64";
 			};
 			name = "Distribution AppStore";
 		};
@@ -5651,7 +5647,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.exoplatform.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -5698,7 +5693,6 @@
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -5745,7 +5739,6 @@
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = "Distribution AppStore";
@@ -5796,7 +5789,6 @@
 				PRODUCT_NAME = eXoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = "Distribution AdHoc";
@@ -5849,7 +5841,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -5895,7 +5886,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -5942,7 +5932,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = "Distribution AppStore";
 		};
@@ -5988,7 +5977,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = "Distribution AdHoc";
 		};
@@ -6021,7 +6009,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64 i386";
 			};
 			name = Debug;
 		};
@@ -6053,7 +6041,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 arm64 i386";
 			};
 			name = Release;
 		};
