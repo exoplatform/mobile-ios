@@ -5359,7 +5359,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.exoplatform.mob.eXoPlatformiPHone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exoplatform.ios.exo;
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -5408,7 +5408,7 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.exoplatform.mob.eXoPlatformiPHone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exoplatform.ios.exo;
 				PRODUCT_NAME = eXo;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -5444,7 +5444,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "7ee7de76-eee8-4bb0-adb2-902a2dd575b8";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -5460,9 +5460,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = eXo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo (FEM998T42U)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5493,11 +5493,11 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.exoplatform.mob.eXoPlatformiPHone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exoplatform.ios.exo;
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "13e45634-56ab-4df8-a273-c2309cc29c32";
-				"PROVISIONING_PROFILE[sdk=*]" = "13e45634-56ab-4df8-a273-c2309cc29c32";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "13e45634-56ab-4df8-a273-c2309cc29c32";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -5530,7 +5530,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "4cff4f12-549d-4011-b4ea-9a2971cd9e4e";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -5546,9 +5546,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = eXo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo (FEM998T42U)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5580,11 +5580,11 @@
 					Foundation,
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.exoplatform.mob.eXoPlatformiPHone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exoplatform.ios.exo;
 				PRODUCT_NAME = eXo;
-				PROVISIONING_PROFILE = "b7e81202-9ef6-4fc7-b5be-1139b136e007";
-				"PROVISIONING_PROFILE[sdk=*]" = "b7e81202-9ef6-4fc7-b5be-1139b136e007";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b7e81202-9ef6-4fc7-b5be-1139b136e007";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -5843,9 +5843,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.exoplatform.mob.eXoPlatformiPHone.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.exoplatform.ios.exo.share-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -5889,7 +5890,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.exoplatform.mob.eXoPlatformiPHone.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.exoplatform.ios.exo.share-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -5918,9 +5919,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = eXo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo (FEM998T42U)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: eXo (FEM998T42U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5936,9 +5937,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.exoplatform.mob.eXoPlatformiPHone.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.exoplatform.ios.exo.share-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b7e81202-9ef6-4fc7-b5be-1139b136e007";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
@@ -5965,8 +5967,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = eXo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: eXo (FEM998T42U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eXo (FEM998T42U)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5982,9 +5984,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.exoplatform.mob.eXoPlatformiPHone.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.exoplatform.ios.exo.share-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b6eec612-998c-499c-b7d4-044dec57688a";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Shared/UI/share-extension-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;

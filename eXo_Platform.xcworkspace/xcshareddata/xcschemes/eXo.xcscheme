@@ -34,6 +34,20 @@
                ReferencedContainer = "container:eXo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9C202AA51B1EFFFF00FEC82B"
+               BuildableName = "share-extension.appex"
+               BlueprintName = "share-extension"
+               ReferencedContainer = "container:eXo.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

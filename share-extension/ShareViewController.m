@@ -105,7 +105,7 @@ enum {
  
  */
 -(void) initListAccounts {
-    NSUserDefaults *mySharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: @"group.com.exoplatform.mob.eXoPlatformiPHone"];
+    NSUserDefaults *mySharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: @"group.com.exoplatform.ios.exo"];
     allAccounts = [[NSMutableArray alloc] init];
     if (mySharedDefaults){
         NSArray * allUsernames = [mySharedDefaults objectForKey:EXO_SHARE_EXTENSION_ALL_ACCOUNTS];

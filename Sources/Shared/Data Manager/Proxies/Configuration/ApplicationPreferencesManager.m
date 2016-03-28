@@ -165,7 +165,7 @@
     {
         [_arrServerList addObjectsFromArray:arrUserServerList];
     }
-    NSUserDefaults * groupUserDefaults = [[NSUserDefaults alloc] initWithSuiteName: @"group.com.exoplatform.mob.eXoPlatformiPHone"];
+    NSUserDefaults * groupUserDefaults = [[NSUserDefaults alloc] initWithSuiteName: @"group.com.exoplatform.ios.exo"];
     NSMutableArray * list_accounts = [[NSMutableArray alloc] init];
 
     for (ServerObj * serverObj in _arrServerList){

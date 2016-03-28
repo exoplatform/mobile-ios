@@ -6,9 +6,9 @@
 	<string>FEM998T42U</string>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.exoplatform.mob.eXoPlatformiPHone</string>
+		<string>group.com.exoplatform.ios.exo</string>
 	</array>
 	<key>keychain-access-groups</key>
-	<string>FEM998T42U.com.exoplatform.mob.eXoPlatformiPhone</string>
+	<string>FEM998T42U.com.exoplatform.ios.exo</string>
 </dict>
 </plist>
