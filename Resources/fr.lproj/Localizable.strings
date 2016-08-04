@@ -14,15 +14,15 @@
 
 "SignInButton" = "Se connecter";
 
-"SignInButton_In" = "jusqu'au";
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "Utilisateur";
 
 "PasswordPlaceholder" = "Mot de passe";
 
-"Last Login" = "Dernière connexion";
+"Last Login" = "Last login";
 
-"Connected" = "Connecté";
+"Connected" = "Connected";
 
 "Sign In" = "Connexion";
 
@@ -104,7 +104,7 @@
 
 "Settings" = "Réglages";
 
-"RememberMe" = "Rester connecté";
+"RememberMe" = "Stay signed in";
 
 "AutoLogin" = "Connexion automatique";
 
