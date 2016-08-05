@@ -24,7 +24,7 @@
 
 "Connected" = "Verbonden";
 
-"Sign In" = "Sign In";
+"Sign In" = "Aanmelden";
 
 /* 
  * Documents
@@ -112,7 +112,7 @@
 
 "ShowPrivateDrive" = "Toon mijn privé drive";
 
-"Language" = "Languages";
+"Language" = "Talen";
 
 "English" = "Engels";
 
@@ -122,15 +122,15 @@
 
 "Spanish" = "Spaans";
 
-"Portuguese-Brazil" = "Portuguese (Brazil)";
+"Portuguese-Brazil" = "Portugees (Brazilië)";
 
-"Greek" = "Greek";
+"Greek" = "Grieks";
 
 "Send" = "#{word.send}";
 
 "ServerList" = "Serverlijst";
 
-"Account" = "Account";
+"Account" = "Rekening";
 
 "NewServer" = "Nieuwe server";
 
@@ -165,7 +165,7 @@
 
 "InvalidServer" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
 
-"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"NetworkConnectionFailed" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
 
 "UserNameEmpty" = "Onjuiste gebruikersnaam";
 
@@ -311,7 +311,7 @@
 
 "EndTime" = "Eindtijd";
 
-"NoComment" = "No one has commented, be the first one";
+"NoComment" = "Niemand heeft gereageerd, wees de eerste";
 
 "Image Preview" = "Image voorbeeld";
 
@@ -386,7 +386,7 @@
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
 
 "EmailIsBlacklisted" = "Please use your company email to sign up";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Weet u zeker dat u wilt verwijderen van dit item?";
 
-"Done" = "Done";
+"Done" = "#{word.done} :";
