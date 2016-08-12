@@ -24,7 +24,7 @@
 
 "Connected" = "Verbonden";
 
-"Sign In" = "Aanmelden";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -95,7 +95,7 @@
 
 "Fullscreen" = "Fullscreen";
 
-"Close" = "Sluiten";
+"Close" = "Close";
 
 
 /*
@@ -112,7 +112,7 @@
 
 "ShowPrivateDrive" = "Toon mijn privé drive";
 
-"Language" = "Talen";
+"Language" = "Languages";
 
 "English" = "Engels";
 
@@ -122,15 +122,15 @@
 
 "Spanish" = "Spaans";
 
-"Portuguese-Brazil" = "Portugees (Brazilië)";
+"Portuguese-Brazil" = "Portuguese (Brazil)";
 
-"Greek" = "Grieks";
+"Greek" = "Greek";
 
 "Send" = "#{word.send}";
 
 "ServerList" = "Serverlijst";
 
-"Account" = "Rekening";
+"Account" = "Account";
 
 "NewServer" = "Nieuwe server";
 
@@ -165,7 +165,7 @@
 
 "InvalidServer" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
 
-"NetworkConnectionFailed" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
+"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
 
 "UserNameEmpty" = "Onjuiste gebruikersnaam";
 
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Activity streams";
 
-"News" = "Activiteiten Stream";
+"News" = "Activity Stream";
 
 "Details" = "Kalender details";
 
@@ -311,7 +311,7 @@
 
 "EndTime" = "Eindtijd";
 
-"NoComment" = "Niemand heeft gereageerd, wees de eerste";
+"NoComment" = "No one has commented, be the first one";
 
 "Image Preview" = "Image voorbeeld";
 
@@ -323,7 +323,7 @@
 
 "My Connections" = "Mijn verbindingen";
 
-"My Spaces" = "Mijn ruimten";
+"My Spaces" = "My Spaces";
 
 "My Status" = "Mijn activiteiten";
 
@@ -386,7 +386,7 @@
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
+"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
 
 "EmailIsBlacklisted" = "Please use your company email to sign up";
 
@@ -436,7 +436,7 @@
 
 "Loading spaces" = "Spaties bezig met laden...";
 
-"To" = "Aan";
+"To" = "To";
 
 "in" = "in";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Weet u zeker dat u wilt verwijderen van dit item?";
 
-"Done" = "#{word.done} :";
+"Done" = "Done";
