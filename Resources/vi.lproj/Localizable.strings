@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "Kết nối";
+"SignInButton" = "Connect";
 
-"SignInButton_In" = "Đến";
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "Tên người dùng";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "Đã kết nối";
+"Connected" = "Connected";
 
-"Sign In" = "Đăng nhập";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Activity stream";
 
-"News" = "Dòng hoạt động";
+"News" = "Activity Stream";
 
 "Details" = "Chi tiết";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Loại bỏ";
 
-"All Updates" = "Tất cả";
+"All Updates" = "All Activities";
 
-"My Connections" = "Kết nối của Tôi";
+"My Connections" = "My Connections";
 
-"My Spaces" = "NHÓM CỦA TÔI";
+"My Spaces" = "My Spaces";
 
-"My Status" = "Hoạt động cá nhân";
+"My Status" = "My Activities";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "Hoạt động cá nhân";
+"Public" = "My Activities";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "Đến";
+"To" = "To";
 
-"in" = "Trong";
+"in" = "in";
 
 "space" = "space";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
-"Done" = "Hoàn thành";
+"Done" = "Done";
