@@ -12,19 +12,19 @@
 
 "SignInPageTitle" = "Prijavna stran";
 
-"SignInButton" = "Poveži";
+"SignInButton" = "Connect";
 
-"SignInButton_In" = "do";
+"SignInButton_In" = "to";
 
-"UsernamePlaceholder" = "Uporabniško ime";
+"UsernamePlaceholder" = "Username";
 
-"PasswordPlaceholder" = "Geslo";
+"PasswordPlaceholder" = "Password";
 
-"Last Login" = "Zadnja prijava";
+"Last Login" = "Last login";
 
 "Connected" = "Povezan";
 
-"Sign In" = "Prijava";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -36,13 +36,13 @@
 
 "RenameTitle" = "Preimenuj";
 
-"Copy" = "Kopiraj";
+"Copy" = "Copy";
 
-"Move" = "Izreži";
+"Move" = "Cut";
 
-"Paste" = "Prilepi";
+"Paste" = "Paste";
 
-"Documents" = "Dokumenti";
+"Documents" = "Documents";
 
 "TakeAPicture" = "Fotografiraj";
 
@@ -65,21 +65,21 @@
  * General
  */
 
-"Cancel" = "Prekliči";
+"Cancel" = "Cancel";
 
 "DoneButton" = "Dokončano";
 
-"Delete" = "Izbriši";
+"Delete" = "Delete";
 
 "Success" = "Uspeh";
 
-"Home" = "Domov";
+"Home" = "Home";
 
-"Loading" = "Nalagam ...";
+"Loading" = "Loading...";
 
 "LoadingURL" = "Prenašanje URL";
 
-"OK" = "V redu";
+"OK" = "OK";
 
 "Disconnect" = "Prekini";
 
@@ -93,7 +93,7 @@
 
 "Optional" = "Izbirno";
 
-"Fullscreen" = "Celozaslonski način";
+"Fullscreen" = "Fullscreen";
 
 "Close" = "Zapri";
 
@@ -112,21 +112,21 @@
 
 "ShowPrivateDrive" = "Prikaži moj zasebni pogon";
 
-"Language" = "Jeziki";
+"Language" = "Languages";
 
 "English" = "Angleščina";
 
 "French" = "Francoščina";
 
-"German" = "Nemščina";
+"German" = "German";
 
-"Spanish" = "Španščina";
+"Spanish" = "Spanish";
 
-"Portuguese-Brazil" = "Portugalščina (Brazilija)";
+"Portuguese-Brazil" = "Portuguese (Brazil)";
 
-"Greek" = "Grščina";
+"Greek" = "Greek";
 
-"Send" = "Pošlji";
+"Send" = "Send";
 
 "ServerList" = "Seznam strežnikov";
 
@@ -165,7 +165,7 @@
 
 "InvalidServer" = "Z intranetom se ni mogoče povezati, preverite URL ali se obrnite na skrbnika";
 
-"NetworkConnectionFailed" = "Z intranetom se ni mogoče povezati, preverite URL ali se obrnite na skrbnika";
+"NetworkConnectionFailed" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
 
 "UserNameEmpty" = "Nepravilno uporabniško ime";
 
@@ -175,7 +175,7 @@
 
 "EmptyFolder" = "Ta mapa je prazna";
 
-"UnreadableFile" = "Te datoteke ni mogoče odpreti v aplikaciji";
+"UnreadableFile" = "This file cannot be opened on the application";
 
 "NoActivities" = "Na vaši časovnici ni bilo objavljenih nobenih dejavnosti";
 
@@ -189,13 +189,13 @@
 
 "InvalidUrl" = "Neveljaven URL";
 
-"FileError" = "Napaka";
+"FileError" = "Error";
 
 "CameraNotAvailable" = "Kamera ni na voljo";
 
 "GadgetsCannotBeRetrieved" = "Pripomočkov ni mogoče pridobiti";
 
-"Error" = "Napaka";
+"Error" = "Error";
 
 "NoMessageComment" = "Vnesite nekaj besedila v komentar";
 
@@ -234,7 +234,7 @@
  * Apps
  */
 
-"Dashboard" = "Aplikacije";
+"Dashboard" = "Apps";
 
 
 /*
@@ -255,9 +255,9 @@
 
 "ActivityStream" = "Tok dejavnosti";
 
-"News" = "Tok dejavnosti";
+"News" = "Activity Stream";
 
-"Details" = "Podrobnosti";
+"Details" = "Details";
 
 "comments(%d)" = "Komentarji(%d)";
 
@@ -269,9 +269,9 @@
 
 "UpdatingActivity" = "Posodabljanje dejavnosti";
 
-"PostingActivity" = "Objava";
+"PostingActivity" = "Post";
 
-"CommentActivity" = "Komentar";
+"CommentActivity" = "Comment";
 
 "GettingActivityDetail" = "Pridobivanje podrobnosti dejavnosti";
 
@@ -303,7 +303,7 @@
 
 "TaskUpdated" = "je pravkar posodobil(a) opravilo:";
 
-"Description" = "Opis";
+"Description" = "Description";
 
 "Location" = "Lokacija";
 
@@ -311,27 +311,27 @@
 
 "EndTime" = "Končni čas";
 
-"NoComment" = "Nihče šeni komentiral, bodi prvi";
+"NoComment" = "No one has commented, be the first one";
 
 "Image Preview" = "Predogled slike";
 
-"Change" = "Spremeni";
+"Change" = "Change";
 
-"Remove" = "Odstrani";
+"Remove" = "Remove";
 
-"All Updates" = "Vse dejavnosti";
+"All Updates" = "All Activities";
 
-"My Connections" = "Moje povezave";
+"My Connections" = "My Connections";
 
-"My Spaces" = "Moji prostori";
+"My Spaces" = "My Spaces";
 
-"My Status" = "Moje dejavnosti";
+"My Status" = "My Activities";
 
 /*
  * Date message converter
  */
 
-"Today" = "Danes";
+"Today" = "Today";
 
 "DateFmt" = "%1$@%2$@%3$@%4$@";
 
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "Moje dejavnosti";
+"Public" = "My Activities";
 
 "CannotLoadSpaceID" = "Ni mogoče naložiti identitete prostora";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Prenašanje prostorov ...";
 
-"To" = "do";
+"To" = "To";
 
-"in" = "v";
+"in" = "in";
 
 "space" = "prostor";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Ali ste prepričani, da želite izbrisati ta element ?";
 
-"Done" = "Dokončano";
+"Done" = "Done";
