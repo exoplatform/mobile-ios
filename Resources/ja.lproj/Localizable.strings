@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Login page";
 
-"SignInButton" = "つながり";
+"SignInButton" = "Connect";
 
-"SignInButton_In" = "宛先";
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "Username";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "接続されています。";
+"Connected" = "Connected";
 
-"Sign In" = "サインイン";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Activity stream";
 
-"News" = "アクティビティ ストリーム";
+"News" = "Activity Stream";
 
 "Details" = "Details";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Remove";
 
-"All Updates" = "すべてのアクティビティ";
+"All Updates" = "All Activities";
 
-"My Connections" = "私のつながり";
+"My Connections" = "My Connections";
 
-"My Spaces" = "マイスペース";
+"My Spaces" = "My Spaces";
 
-"My Status" = "私のアクティビティ";
+"My Status" = "My Activities";
 
 /*
  * Date message converter
