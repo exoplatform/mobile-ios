@@ -12,9 +12,9 @@
 
 "SignInPageTitle" = "Страница Входа";
 
-"SignInButton" = "Добавить в контакты";
+"SignInButton" = "Connect";
 
-"SignInButton_In" = "до";
+"SignInButton_In" = "to";
 
 "UsernamePlaceholder" = "Имя пользователя";
 
@@ -22,9 +22,9 @@
 
 "Last Login" = "Last login";
 
-"Connected" = "В списке контактов";
+"Connected" = "Connected";
 
-"Sign In" = "Войти в систему";
+"Sign In" = "Sign In";
 
 /* 
  * Documents
@@ -255,7 +255,7 @@
 
 "ActivityStream" = "Лента активности";
 
-"News" = "Лента активности";
+"News" = "Activity Stream";
 
 "Details" = "Подробная информация";
 
@@ -319,13 +319,13 @@
 
 "Remove" = "Удалить";
 
-"All Updates" = "Все действия";
+"All Updates" = "All Activities";
 
-"My Connections" = "Мои контакты";
+"My Connections" = "My Connections";
 
-"My Spaces" = "Мои области";
+"My Spaces" = "My Spaces";
 
-"My Status" = "Моя деятельность";
+"My Status" = "My Activities";
 
 /*
  * Date message converter
@@ -424,7 +424,7 @@
  Post Activity to Space
  */
 
-"Public" = "Моя деятельность";
+"Public" = "My Activities";
 
 "CannotLoadSpaceID" = "Unable to load the space's identity";
 
@@ -436,9 +436,9 @@
 
 "Loading spaces" = "Loading spaces ...";
 
-"To" = "До";
+"To" = "To";
 
-"in" = "в";
+"in" = "in";
 
 "space" = "space";
 
@@ -452,4 +452,4 @@
 
 "Confirm Delete" = "Are you sure you want to delete this item ?";
 
-"Done" = "Готово";
+"Done" = "Done";
