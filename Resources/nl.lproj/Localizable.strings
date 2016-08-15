@@ -386,7 +386,7 @@
 
 "eXoCloudConfigurationAssistant" = "eXo";
 
-"ServiceUnavailable" = "Impossible to connect to your intranet, please check its URL or contact your administrator";
+"ServiceUnavailable" = "Onmogelijk om verbinding maken met uw intranet, Controleer de URL of neem contact op met uw beheerder";
 
 "EmailIsBlacklisted" = "Please use your company email to sign up";
 
