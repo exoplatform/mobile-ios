@@ -12,19 +12,19 @@
 
 "SignInPageTitle" = "Prijavna stran";
 
-"SignInButton" = "Connect";
+"SignInButton" = "Poveži";
 
-"SignInButton_In" = "to";
+"SignInButton_In" = "do";
 
-"UsernamePlaceholder" = "Username";
+"UsernamePlaceholder" = "Uporabniško ime";
 
-"PasswordPlaceholder" = "Password";
+"PasswordPlaceholder" = "Geslo";
 
-"Last Login" = "Last login";
+"Last Login" = "Zadnja prijava";
 
 "Connected" = "Povezan";
 
-"Sign In" = "Sign In";
+"Sign In" = "Prijava";
 
 /* 
  * Documents
@@ -36,11 +36,11 @@
 
 "RenameTitle" = "Preimenuj";
 
-"Copy" = "Copy";
+"Copy" = "Kopiraj";
 
-"Move" = "Cut";
+"Move" = "Izreži";
 
-"Paste" = "Paste";
+"Paste" = "Prilepi";
 
 "Documents" = "Documents";
 
@@ -65,7 +65,7 @@
  * General
  */
 
-"Cancel" = "Cancel";
+"Cancel" = "Prekliči";
 
 "DoneButton" = "Dokončano";
 
@@ -79,7 +79,7 @@
 
 "LoadingURL" = "Prenašanje URL";
 
-"OK" = "OK";
+"OK" = "V redu";
 
 "Disconnect" = "Prekini";
 
@@ -93,7 +93,7 @@
 
 "Optional" = "Izbirno";
 
-"Fullscreen" = "Fullscreen";
+"Fullscreen" = "Celozaslonski način";
 
 "Close" = "Zapri";
 
