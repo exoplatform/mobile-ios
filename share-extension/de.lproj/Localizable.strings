@@ -11,16 +11,16 @@
 
 "uploads failed" = "Uploads fehlgeschlagen";
 
-"upload failed" = "Upload fehlgeschlagen";
+"upload failed" = "upload failed";
 
 "Cancel" = "Cancel";
 
 "Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "%d Element(e) konnte(n) nicht hochgeladen werden";
+"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
-"File too large" = "Datei zu groß";
+"File too large" = "File too large";
 
-"Network error" = "Netzwerkfehler";
+"Network error" = "Network error";
 
-"Do you want to post the message anyway?" = "Möchten Sie die Nachricht trotzdem abschicken?";
+"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
