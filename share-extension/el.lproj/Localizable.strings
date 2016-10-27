@@ -19,8 +19,8 @@
 
 "%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
-"File too large" = "File too large";
+"File too large" = "Πολύ μεγάλο μέγεθος αρχείου";
 
-"Network error" = "Network error";
+"Network error" = "Σφάλμα δικτύου";
 
-"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
+"Do you want to post the message anyway?" = "Θέλετε να δημοσιεύσετε το μήνυμα ούτως ή άλλως;";
