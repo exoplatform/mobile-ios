@@ -13,9 +13,9 @@
 
 "upload failed" = "upload failed";
 
-"Cancel" = "Cancel";
+"Cancel" = "#{word.cancel}";
 
-"Post" = "Post";
+"Post" = "Přidat příspěvek";
 
 "%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
