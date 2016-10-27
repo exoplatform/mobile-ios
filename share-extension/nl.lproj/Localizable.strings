@@ -11,16 +11,16 @@
 
 "uploads failed" = "upload mislukt";
 
-"upload failed" = "upload failed";
+"upload failed" = "uploaden mislukt";
 
 "Cancel" = "Cancel";
 
 "Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
+"%d item(s) cannot be uploaded" = "%d objecten kunnen niet worden geüpload";
 
-"File too large" = "File too large";
+"File too large" = "Bestand te groot";
 
-"Network error" = "Network error";
+"Network error" = "Netwerkfout";
 
-"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
+"Do you want to post the message anyway?" = "Wilt u het bericht in elk geval posten?";
