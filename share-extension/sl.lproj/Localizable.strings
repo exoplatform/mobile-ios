@@ -11,16 +11,16 @@
 
 "uploads failed" = "prenosi niso uspeli";
 
-"upload failed" = "prenos ni uspel";
+"upload failed" = "upload failed";
 
-"Cancel" = "Prekliči";
+"Cancel" = "Cancel";
 
-"Post" = "Objava";
+"Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "%d elementa(ov) ni mogoče prenesti";
+"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
-"File too large" = "Datoteka je prevelika";
+"File too large" = "File too large";
 
-"Network error" = "Omrežna napaka";
+"Network error" = "Network error";
 
-"Do you want to post the message anyway?" = "Ali želite vseeno objaviti sporočilo?";
+"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
