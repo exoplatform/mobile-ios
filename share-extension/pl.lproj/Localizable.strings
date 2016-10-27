@@ -11,16 +11,16 @@
 
 "uploads failed" = "przekazywania zakończyły się niepowodzeniem";
 
-"upload failed" = "przekazywanie zakończyło się niepowodzeniem";
+"upload failed" = "upload failed";
 
 "Cancel" = "Cancel";
 
 "Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "nie można przekazać %d pozycji";
+"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
-"File too large" = "Zbyt duży plik";
+"File too large" = "File too large";
 
-"Network error" = "Błąd sieci";
+"Network error" = "Network error";
 
-"Do you want to post the message anyway?" = "Czy nadal chcesz opublikować ten komunikat?";
+"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
