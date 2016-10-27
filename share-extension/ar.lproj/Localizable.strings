@@ -11,16 +11,16 @@
 
 "uploads failed" = "فشل في عمليات التحميل";
 
-"upload failed" = "فشل في عملية التحميل";
+"upload failed" = "upload failed";
 
 "Cancel" = "Cancel";
 
 "Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "%d ملفا لم يتمّ تحميله بنجاح";
+"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
-"File too large" = "الملف كبير جداً";
+"File too large" = "File too large";
 
-"Network error" = "خطأ في شبكة الاتصال";
+"Network error" = "Network error";
 
-"Do you want to post the message anyway?" = "هل تريد نشر الرسالة في كل الحالات؟";
+"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
