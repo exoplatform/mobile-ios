@@ -11,16 +11,16 @@
 
 "uploads failed" = "завантаження не вдалося";
 
-"upload failed" = "Не вдалося завантажити";
+"upload failed" = "upload failed";
 
 "Cancel" = "Cancel";
 
 "Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "%d файла(ів) не можуть бути завантажені";
+"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
-"File too large" = "Файл завеликий";
+"File too large" = "File too large";
 
-"Network error" = "Помилка мережі";
+"Network error" = "Network error";
 
-"Do you want to post the message anyway?" = "Ви хочете опублікувати повідомлення в будь-якому випадку?";
+"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
