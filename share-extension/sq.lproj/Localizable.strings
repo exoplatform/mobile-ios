@@ -11,16 +11,16 @@
 
 "uploads failed" = "crwdns6824521:0crwdne6824521:0";
 
-"upload failed" = "crwdns6824522:0crwdne6824522:0";
+"upload failed" = "upload failed";
 
-"Cancel" = "crwdns6824523:0crwdne6824523:0";
+"Cancel" = "Cancel";
 
-"Post" = "crwdns6824524:0crwdne6824524:0";
+"Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "crwdns6824525:0%dcrwdne6824525:0";
+"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
-"File too large" = "crwdns6824526:0crwdne6824526:0";
+"File too large" = "File too large";
 
-"Network error" = "crwdns6824527:0crwdne6824527:0";
+"Network error" = "Network error";
 
-"Do you want to post the message anyway?" = "crwdns6824528:0crwdne6824528:0";
+"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
