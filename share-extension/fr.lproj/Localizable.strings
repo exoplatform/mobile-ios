@@ -11,16 +11,16 @@
 
 "uploads failed" = "téléchargements ont echoués";
 
-"upload failed" = "upload failed";
+"upload failed" = "téléchargement a echoué";
 
-"Cancel" = "Cancel";
+"Cancel" = "Annuler";
 
-"Post" = "Post";
+"Post" = "Publier";
 
-"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
+"%d item(s) cannot be uploaded" = "%d téléchargements ont echoués";
 
-"File too large" = "File too large";
+"File too large" = "Fichier trop large";
 
-"Network error" = "Network error";
+"Network error" = "Erreur réseau";
 
-"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
+"Do you want to post the message anyway?" = "Voulez-vous quand même publier le message?";
