@@ -11,16 +11,16 @@
 
 "uploads failed" = "pujades fallides";
 
-"upload failed" = "pujada fallida";
+"upload failed" = "upload failed";
 
 "Cancel" = "Cancel";
 
 "Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "no ha pogut pujar %d element(s)";
+"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
-"File too large" = "Fitxer massa gran";
+"File too large" = "File too large";
 
-"Network error" = "Error de xarxa";
+"Network error" = "Network error";
 
-"Do you want to post the message anyway?" = "Vol enviar el missatge igualment?";
+"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
