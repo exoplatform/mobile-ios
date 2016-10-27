@@ -11,16 +11,16 @@
 
 "uploads failed" = "subidas fallidas";
 
-"upload failed" = "subida fallida";
+"upload failed" = "upload failed";
 
-"Cancel" = "Cancelar";
+"Cancel" = "Cancel";
 
-"Post" = "Publicar";
+"Post" = "Post";
 
-"%d item(s) cannot be uploaded" = "%d elemento(s) no pueden cargarse";
+"%d item(s) cannot be uploaded" = "%d item(s) cannot be uploaded";
 
-"File too large" = "Archivo demasiado grande";
+"File too large" = "File too large";
 
-"Network error" = "Error de conexión";
+"Network error" = "Network error";
 
-"Do you want to post the message anyway?" = "¿Desea publicar el mensaje de todos modos?";
+"Do you want to post the message anyway?" = "Do you want to post the message anyway?";
