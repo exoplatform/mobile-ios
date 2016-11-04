@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Échec de l'action";
 
-"UnLikeActionCannotBeCompleted" = "Échec de l'action";
+"UnLikeActionCannotBeCompleted" = "Impossible de supprimer votre 'J'aime'";
 
 "PostingActionCannotBeCompleted" = "Envoi de l'activité impossible";
 
