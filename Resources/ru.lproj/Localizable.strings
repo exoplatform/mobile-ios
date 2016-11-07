@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Вы не можете ставить лайки деятельности";
 
-"UnLikeActionCannotBeCompleted" = "Вы не можете убирать лайки с деятельности";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Вы не можете публиковать сообщения";
 
