@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Jūs negalite įvertinti veiklos";
 
-"UnLikeActionCannotBeCompleted" = "Jūs negalite neigiamai įvertinti veiklos";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Jūs negalite rašyti žinutės";
 
