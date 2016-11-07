@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Nie możesz polubić tej aktywności";
 
-"UnLikeActionCannotBeCompleted" = "Nie możesz polubić tej aktywności";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Nie można wysłać wiadomość";
 
