@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "لا يمكنك الإعجاب بهذا النّشاط";
 
-"UnLikeActionCannotBeCompleted" = "لا يمكنك الغاء الإعجاب بهذا النّشاط";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "لا يمكن اضافة النشاط";
 
