@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "dejavnosti ne morete všečkati";
 
-"UnLikeActionCannotBeCompleted" = "Ne morete preklicati všečkanja dejavnosti";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Ne morete objaviti sporočila";
 
