@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Du kan ikke like denne aktiviteten";
 
-"UnLikeActionCannotBeCompleted" = "Du kan ikke angre å like denne aktiviteten";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Du kan ikke opprette en melding";
 
