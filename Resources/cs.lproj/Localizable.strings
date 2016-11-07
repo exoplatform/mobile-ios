@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Tento příspěvek nelze označit líbí se mi";
 
-"UnLikeActionCannotBeCompleted" = "Tento příspěvek nelze odznačit líbí se mi";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Nelze odeslat zprávu";
 
