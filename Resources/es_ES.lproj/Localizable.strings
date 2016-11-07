@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "No puede darle a \"me gusta\" a esta actividad";
 
-"UnLikeActionCannotBeCompleted" = "No puede darle a \"no me gusta\" a esta actividad";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Usted no puede publicar un mensaje";
 
