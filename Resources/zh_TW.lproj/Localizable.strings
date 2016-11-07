@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "你可能不喜歡該活動";
 
-"UnLikeActionCannotBeCompleted" = "你可能不喜歡該活動";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "你不能發佈一條訊息";
 
