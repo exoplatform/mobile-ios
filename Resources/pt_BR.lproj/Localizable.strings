@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Você não pode curtir a atividade";
 
-"UnLikeActionCannotBeCompleted" = "Você não pode desfazer o curtir nesta atividade";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Você não pode postar uma mensagem";
 
