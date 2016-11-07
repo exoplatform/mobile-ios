@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "No pot fer un m'agrada en aquesta activitat";
 
-"UnLikeActionCannotBeCompleted" = "No pot desfer un m'agrada en aquesta activitat";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "No es pot publicar un missatge";
 
