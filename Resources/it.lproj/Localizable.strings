@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Non si può mettere un \"Mi piace\" su l'attività";
 
-"UnLikeActionCannotBeCompleted" = "Non si può retirare il \"mi piace\" dell'attività";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Lei non può inviare un messaggio";
 
