@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Ви не можете поставити лайк цій діяльності";
 
-"UnLikeActionCannotBeCompleted" = "Ви не можете прибрати лайки з діяльності";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Ви не можете публікувати повідомлення";
 
