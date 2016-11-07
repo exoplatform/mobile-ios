@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "You cannot like the activity";
 
-"UnLikeActionCannotBeCompleted" = "You cannot unlike the activity";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "You cannot post a message";
 
