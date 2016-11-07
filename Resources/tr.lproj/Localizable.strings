@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Etkinliği beğenemezsiniz";
 
-"UnLikeActionCannotBeCompleted" = "Etkinliği beğenmedim yapamazsınız";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "İleti gönderemezsiniz";
 
