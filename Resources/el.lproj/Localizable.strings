@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Δεν μπορείτε να κάνετε like σε αυτή τη δραστηριότητα";
 
-"UnLikeActionCannotBeCompleted" = "Δεν μπορείτε να κάνετε unlike σε αυτή τη δραστηριότητα";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Δεν μπορείτε να δημοσιεύσετε μηνύματα";
 
