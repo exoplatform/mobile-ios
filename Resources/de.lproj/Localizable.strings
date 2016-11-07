@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Aktion \"Gefällt mir\" nicht möglich";
 
-"UnLikeActionCannotBeCompleted" = "Aktion \"Gefällt mir nicht\" nicht möglich";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Sie können keine Nachricht schreiben";
 
