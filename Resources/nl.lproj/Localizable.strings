@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "U kan niet Like de activiteit";
 
-"UnLikeActionCannotBeCompleted" = "U kunt niet unlike de activiteit";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "U kan niet een bericht posten";
 
