@@ -207,7 +207,7 @@
 
 "LikingActionCannotBeCompleted" = "Tu nu poți aprecia activitatea";
 
-"UnLikeActionCannotBeCompleted" = "Tu nu poți dez-aprecia activitatea";
+"UnLikeActionCannotBeCompleted" = "The Like couldn't be removed";
 
 "PostingActionCannotBeCompleted" = "Tu nu poți posta un mesaj";
 
